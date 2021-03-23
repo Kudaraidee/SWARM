@@ -517,6 +517,16 @@
       "comma seperated"
     ]
   },
+  "ghostrider": {
+    "alt_names": [
+      "gr",
+	  "ghostrider"
+    ],
+    "exclusions": [
+      "add pool or miner here",
+      "comma seperated"
+    ]
+  },
   "globalhash": {
     "alt_names": [
       "globalhash",
