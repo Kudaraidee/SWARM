@@ -23,9 +23,9 @@
     "type": "cpu",
     "CPU": ".\\bin\\rplant-1\\cpuminer-avx2",
     "minername": "cpuminer-avx2",
-    "version": "4.5.5",
+    "version": "5.0.15",
     "optional": "No",
-    "uri": "https://github.com/rplant8/cpuminer-opt-rplant/releases/download/4.5.5/cpuminer-opt-linux.tar.gz"
+    "uri": "https://github.com/rplant8/cpuminer-opt-rplant/releases/download/5.0.15/cpuminer-opt-linux.tar.gz"
   },
   "xmrig-cpu": {
     "name": "xmrig-cpu",
