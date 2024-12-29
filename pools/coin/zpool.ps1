@@ -20,7 +20,7 @@ if ($Name -in $(arg).PoolName) {
     if ($(arg).Ban_GLT -eq "Yes") { $NoGLT = "GLT"; }
     if ($(arg).xnsub -eq "Yes") { $X = "#xnsub"; } 
     
-    try { $Pool_Request = Invoke-RestMethod "http://blockmasters.co/api/currencies" -UseBasicParsing -TimeoutSec 10 -ErrorAction Stop }
+    try { $Pool_Request = Invoke-RestMethod "https://www.zpool.ca/api/currencies" -UseBasicParsing -TimeoutSec 30 -ErrorAction Stop }
     catch {
         return "WARNING: SWARM contacted ($Name) for a failed API check. (Coins)"; 
     }
@@ -40,9 +40,10 @@ if ($Name -in $(arg).PoolName) {
     $Pool_Algos = $global:Config.Pool_Algos;
     $Pool_Coins = $global:Config.Pool_Coins;
     $Ban_Hammer = $global:Config.vars.BanHammer;
-    $Fee_Table = $(vars).FeeTable.blockmasters;
-    $Divisor_Table = $(vars).divisortable.blockmasters;
+    $Fee_Table = $(vars).FeeTable.zpool;
+    $Divisor_Table = $(vars).divisortable.zpool;
     $Active_Symbols = $(vars).ActiveSymbol;
+    $ttf = $(arg).ttf_maximum;
 
     ## Change to universal naming schema and only items we need to add
     $Pool_Sorted = $Pool_Request.PSobject.Properties.Name | 
@@ -53,30 +54,32 @@ if ($Name -in $(arg).PoolName) {
         else { $_ }
     } |
     ForEach-Object -Parallel {
-        $request = $using:Pool_Request
-        $Pipe_Algos = $using:Pool_Algos;
-        $Pipe_Coins = $using:Pool_Coins;
-        $Pipe_Hammer = $using:Ban_Hammer;
-        $Algo_List = $using:Algos;       
-        $F_Table = $using:Fee_Table;
-        $D_Table = $using:Divisor_Table;
-        $Get_GLT = $using:NoGLT;
-        ################################
-        $request.$_ | Add-Member "sym" $_
-        $request.$_ | Add-Member "Original_Algo" $request.$_.Algo.ToLower()
-        $Algo = $request.$_.Algo
-        $request.$_.Algo = $Pipe_Algos.PSObject.Properties.Name | Where-Object { $Algo -in $Pipe_Algos.$_.alt_names };
-        if ( 
-            $request.$_.algo -in $Algo_List -and
-            $request.$_.algo -notin $Pipe_Algos.($request.$_.Algo).exclusions -and
-            $request.$_.sym -notin $Pipe_Algos.($request.$_.Algo).exclusions -and
-            $request.$_.sym -notin $Pipe_Coins.($request.$_.sym).exclusions -and
-            $request.$_.sym -notin $Pipe_Hammer -and
-            $request.$_.algo -in $F_Table.keys -and
-            $request.$_.algo -in $D_Table.keys -and
-            $request.$_.sym -notlike "*$Get_GLT*"
-        ) {
-            return $request.$_
+            $request = $using:Pool_Request
+            $Pipe_Algos = $using:Pool_Algos;
+            $Pipe_Coins = $using:Pool_Coins;
+            $Pipe_Hammer = $using:Ban_Hammer;
+            $Algo_List = $using:Algos;       
+            $F_Table = $using:Fee_Table;
+            $D_Table = $using:Divisor_Table;
+            $Get_GLT = $using:NoGLT;
+            ################################
+            if ($request.$_.Algo -ne $null) {
+            $request.$_ | Add-Member "sym" $_
+            $request.$_ | Add-Member "Original_Algo" $request.$_.Algo.ToLower()
+            $Algo = $request.$_.Algo
+            $request.$_.Algo = $Pipe_Algos.PSObject.Properties.Name | Where-Object { $Algo -in $Pipe_Algos.$_.alt_names };
+            if ( 
+                $request.$_.algo -in $Algo_List -and
+                $request.$_.algo -notin $Pipe_Algos.($request.$_.Algo).exclusions -and
+                $request.$_.sym -notin $Pipe_Algos.($request.$_.Algo).exclusions -and
+                $request.$_.sym -notin $Pipe_Coins.($request.$_.sym).exclusions -and
+                $request.$_.sym -notin $Pipe_Hammer -and
+                $request.$_.algo -in $F_Table.keys -and
+                $request.$_.algo -in $D_Table.keys -and
+                $request.$_.sym -notlike "*$Get_GLT*"
+            ) {
+                return $request.$_
+            }
         }
     } -ThrottleLimit $(arg).Throttle
 
@@ -103,10 +106,10 @@ if ($Name -in $(arg).PoolName) {
         ## switch coin name if same
         if ($_.sym -eq $_.algo) { $coin_name = "$($_.sym)-COIN" }
         $StatName = "$($P_Name)_$($coin_name)"
-        $Hashrate = [math]::Max($_.hashrate, 1)
-        $Divisor = 1000000 * [Convert]::ToDouble($D_Table.$($_.algo))
+        $Hashrate = [math]::Max([Convert]::ToDecimal($_.hashrate), 1)
+        $Divisor = 1000000 * [Convert]::ToDouble($_.mbtc_mh_factor)
         $Fee = [Convert]::ToDouble($F_Table.$($_.algo))
-        $Estimate = [Convert]::ToDecimal($_.estimate) * 0.001
+        $Estimate = [Convert]::ToDecimal($_.estimate)
         $actual = -1
         $current = [Convert]::ToDecimal($Estimate / $Divisor * (1 - ($Fee / 100)))
 
@@ -165,16 +168,18 @@ if ($Name -in $(arg).PoolName) {
         $To_Add += $Sorted | 
         Where-Object Algo -eq $Selected | 
         Where-Object { [Convert]::ToInt32($_."24h_blocks") -ge $Params.Min_Blocks } |
+        Where-Object { $_.conversion_disabled -eq 0 } |
+        Where-Object { $_.name -notmatch "HashTap" } |
+        Where-Object { $_.algo -notmatch "HashTap" } |
         Sort-Object Level -Descending |
         Select-Object -First 1
 
         ## Add back in stats for running miners.
         ## Only add if it meets arguments min_blocks and autotrade
         $Miners | Foreach-Object {
-            Write-Host "Symbol is $($_.Symbol)"
             if ($_.Algo -eq $Selected -and $_.Symbol -notin $To_Add.Sym) {
                 $Add_Stat = $Sorted | Where-Object sym -eq $_.Symbol | 
-                Where-Object { [Convert]::ToInt32($_."24h_blocks_shared") -ge $Params.Min_Blocks }
+                Where-Object { [Convert]::ToInt32($_."24h_blocks") -ge $Params.Min_Blocks }
                 if ($Add_Stat) {
                     $To_Add += $Add_Stat
                 }
@@ -186,7 +191,7 @@ if ($Name -in $(arg).PoolName) {
             $Pool_Host = "$($_.Original_Algo).$($reg).mine.zpool.ca$sub"
             $Pool_Algo = $_.algo.ToLower()
             $Pool_Symbol = $_.sym.ToUpper()
-            $mc = "zap=$Pool_Symbol,"
+            $mc = "zap=$Pool_Symbol"
 
             ## Wallet Swapping/Solo mining
             $Pass1 = $A_Wallets.Wallet1.Keys
@@ -230,25 +235,20 @@ if ($Name -in $(arg).PoolName) {
                             $Pass1 = $Sym
                             $Pass2 = $Sym
                             $Pass3 = $Sym
-                            $mc = "zap=$Sym,"
+                            $mc = "zap=$Sym"
                             if ($AltWallets.$Sym.address -ne "add address of coin if you wish to mine to that address, or leave alone." -and $AltWallets.$_.address -ne "") {
                                 $User1 = $AltWallets.$Sym.address
                                 $User2 = $AltWallets.$Sym.address
                                 $User3 = $AltWallets.$Sym.address
                             }
                         }
-                        if ($AltWallets.$Sym.params -ne "enter additional params here, such as 'm=solo' or m=party.partypassword") {
-                            $mc += "m=$($AltWallets.$Sym.params),"
-                            $mc = $mc.replace("solo", "SOLO")
-                            $mc = $mc.replace("party", "PARTY")
-                        }    
                     }   
                 }
             }
 
             [Pool]::New(
                 ## Symbol
-                "$Pool_Symbol-Coin",
+                "$Pool_Symbol-Coins",
                 ## Algorithm
                 $Pool_Algo,
                 ## Level
@@ -266,11 +266,11 @@ if ($Name -in $(arg).PoolName) {
                 ## User3
                 $User3,
                 ## Pass1
-                "c=$Pass1,$($mc)id=$($Params.RigName1)",
+                "$($Params.RigName1),c=$Pass1,$($mc)",
                 ## Pass2
-                "c=$Pass2,$($mc)id=$($Params.RigName2)",
+                "$($Params.RigName1),c=$Pass2,$($mc)",
                 ## Pass3
-                "c=$Pass3,$($mc)id=$($Params.RigName3)",
+                "$($Params.RigName1),c=$Pass3,$($mc)",
                 ## Previous
                 $previous
             )

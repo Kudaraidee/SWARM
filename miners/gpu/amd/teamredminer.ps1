@@ -20,12 +20,15 @@ $(vars).AMDTypes | ForEach-Object {
 
     $User = "User$Num"; $Pass = "Pass$Num"; $Name = "teamredminer-$Num"; $Port = "2800$Num"
 
+    $MinerAlgos = @();
+
     Switch ($Num) {
-        1 { $Get_Devices = $(vars).AMDDevices1; $Rig = $(arg).Rigname1 }
+        1 { $Get_Devices = $(vars).AMDDevices1; $Rig = $(arg).Rigname1; $MinerAlgos = $(vars).GPUAlgorithm1 }
     }
 
+
     ##Log Directory
-    $Log = Join-Path $($(vars).dir) "logs\$ConfigType.log"
+    $Log = Join-Path $($(vars).dir) "logs\$Name.log"
 
     ##Parse -GPUDevices
     if ($Get_Devices -ne "none") { $Devices = $Get_Devices }
@@ -56,7 +59,7 @@ $(vars).AMDTypes | ForEach-Object {
         $MinerAlgo = $_
 
         if ( 
-            $MinerAlgo -in $(vars).Algorithm -and 
+            $MinerAlgo -in $MinerAlgos -and 
             $Name -notin $global:Config.Pool_Algos.$MinerAlgo.exclusions -and 
             $ConfigType -notin $global:Config.Pool_Algos.$MinerAlgo.exclusions -and 
             $Name -notin $(vars).BanHammer
@@ -66,7 +69,13 @@ $(vars).AMDTypes | ForEach-Object {
             if ($(arg).Rej_Factor -eq "Yes" -and $Stat.Rejections -gt 0 -and $Stat.Rejection_Periods -ge 3) { $HashStat = $Stat.Hour * (1 - ($Stat.Rejections * 0.01)) }
             else { $HashStat = $Stat.Hour }
             $Pools | Where-Object Algorithm -eq $MinerAlgo | ForEach-Object {
-                if ($MinerConfig.$ConfigType.difficulty.$($_.Algorithm)) { $Diff = ",d=$($MinerConfig.$ConfigType.difficulty.$($_.Algorithm))" }else { $Diff = "" }
+                $Diff = ""
+                if ($MinerConfig.$ConfigType.difficulty.$($_.Algorithm)) { 
+                    switch($_.Name) {
+                        "zergpool" { $Diff = ",sd=$($MinerConfig.$ConfigType.difficulty.$($_.Algorithm))" }
+                        default { $Diff = ",d=$($MinerConfig.$ConfigType.difficulty.$($_.Algorithm))" }
+                    }
+                }
                 $GetUser = $_.$User;
                 $UserPass = " -p $($_.$Pass)$($Diff) "
                 if($_.Worker){ $GetUser = $GetUser + "." + $_.Worker; $UserPass = " " }

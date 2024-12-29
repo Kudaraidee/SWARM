@@ -15,7 +15,7 @@ $(vars).CPUTypes | ForEach-Object {
     $Name = "rplant";
 
     ##Log Directory
-    $Log = Join-Path $($(vars).dir) "logs\$ConfigType.log"
+    $Log = Join-Path $($(vars).dir) "logs\$Name.log"
 
     ##Parse -CPUThreads
     if ($(arg).CPUThreads -ne '') { $Devices = $(arg).CPUThreads }
@@ -31,7 +31,7 @@ $(vars).CPUTypes | ForEach-Object {
     ##Prestart actions before miner launch
     ##This can be edit in miner.json
     $Prestart = @()
-    if ($IsLinux) { $Prestart += "export LD_PRELOAD=usr/local/swarm/lib64/libcurl.so.3" }          
+    #if ($IsLinux) { $Prestart += "export LD_PRELOAD=/usr/local/swarm/lib64/libcurl.so.3" }          
     $PreStart += "export LD_LIBRARY_PATH=$ExportDir`:$Miner_Dir"
     if ($IsLinux) { $Prestart += "export DISPLAY=:0" }
     $MinerConfig.$ConfigType.prestart | ForEach-Object { $Prestart += "$($_)" }
@@ -45,7 +45,7 @@ $(vars).CPUTypes | ForEach-Object {
         $MinerAlgo = $_
 
         if ( 
-            $MinerAlgo -in $(vars).Algorithm -and 
+            $MinerAlgo -in $(vars).CPUAlgorithm -and 
             $Name -notin $global:Config.Pool_Algos.$MinerAlgo.exclusions -and 
             $ConfigType -notin $global:Config.Pool_Algos.$MinerAlgo.exclusions -and 
             $Name -notin $(vars).BanHammer
@@ -55,7 +55,13 @@ $(vars).CPUTypes | ForEach-Object {
             if ($(arg).Rej_Factor -eq "Yes" -and $Stat.Rejections -gt 0 -and $Stat.Rejection_Periods -ge 3) { $HashStat = $Stat.Hour * (1 - ($Stat.Rejections * 0.01)) }
             else { $HashStat = $Stat.Hour }
             $Pools | Where-Object Algorithm -eq $MinerAlgo | ForEach-Object {
-                if ($MinerConfig.$ConfigType.difficulty.$($_.Algorithm)) { $Diff = ",d=$($MinerConfig.$ConfigType.difficulty.$($_.Algorithm))" }else { $Diff = "" }
+                $Diff = ""
+                if ($MinerConfig.$ConfigType.difficulty.$($_.Algorithm)) { 
+                    switch($_.Name) {
+                        "zergpool" { $Diff = ",sd=$($MinerConfig.$ConfigType.difficulty.$($_.Algorithm))" }
+                        default { $Diff = ",d=$($MinerConfig.$ConfigType.difficulty.$($_.Algorithm))" }
+                    }
+                }
                 [PSCustomObject]@{
                     MName      = $Name
                     Coin       = $(vars).Coins

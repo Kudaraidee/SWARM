@@ -11,7 +11,40 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #>
 
+function Global:Update-Autofan([string]$Path) {
+    $Config_Path = [IO.Path]::Join($Path, "config\parameters\autofan.json")
+    if(Test-Path $Config_Path) {
+        $hello = [IO.Path]::Join($Path, "debug\hive_hello.txt")
+        $oclist = [IO.Path]::Join($Path, "debug\oclist.txt")
+        $arguments = [IO.Path]::Join($Path, "config\parameters\newarguments.json");
+        $hivekeys = [IO.Path]::Join($Path, "config\parameters\Hive_params_keys.json")
+
+        $new_config = [IO.Path]::Join("$($(vars).dir)", "config\parameters\autofan.json")
+        $new_hello = [IO.Path]::Join("$($(vars).dir)", "debug\hive_hello.txt")
+        $new_oclist = [IO.Path]::Join("$($(vars).dir)", "debug\oclist.txt")
+        $new_arguments = [IO.Path]::Join("$($(vars).dir)", "config\parameters\newarguments.json");
+        $new_hivekeys = [IO.Path]::Join("$($(vars).dir)", "config\parameters\Hive_params_keys.json")
+
+        log "Moving $Config_Path to $new_config";
+        Get-Content $Config_Path | Set-Content $new_config;
+
+        log "Moving $hello to $new_hello";
+        Get-Content $hello | Set-Content $new_hello;
+
+        log "Moving $oclist to $new_oclist";
+        Get-Content $oclist | Set-Content $new_oclist;
+
+        log "Moving $arguments to $new_arguments";
+        Get-Content $arguments | Set-Content $new_arguments;
+
+        log "Moving $hivekeys to $new_hivekeys";
+        Get-Content $hivekeys | Set-Content $new_hivekeys;
+    }
+}
+
 function Global:start-update {
+
+    $Exclude = @("yescrypt.json", "miniz.json", "lolminer.json", "gminer-amd.json", "pool-algos.json", "gminer.json", "wildrig.json", "miniz.json", "nanominer.json","klaust.json")
 
     $Parent = Split-Path $(vars).dir
     log "User Specfied Updates: Searching For Previous Version" -ForegroundColor Yellow
@@ -61,9 +94,9 @@ function Global:start-update {
         $Path = $_
         $Name = [IO.Path]::GetFileName($Path);
         log "Detected Another SWARM version: $Name" -Foreground Yellow
-        $ThisVersion = (Get-Content ([IO.Path]::Join($Path,"h-manifest.conf")) | ConvertFrom-StringData).CUSTOM_VERSION;
+        $ThisVersion = (Get-Content ([IO.Path]::Join($Path, "h-manifest.conf")) | ConvertFrom-StringData).CUSTOM_VERSION;
         log "Previous Version is $ThisVersion" -Foreground Yellow
-        $ThisVersion = [Convert]::ToInt32($ThisVersion.Replace(".",""));
+        $ThisVersion = [Convert]::ToInt32($ThisVersion.Replace(".", ""));
         $Jsons = @("asic", "miners", "oc", "pools", "power", "wallets")
         if ($ThisVersion -gt $Version) { 
             $Jsons = @("asic", "oc", "power", "wallets")
@@ -76,6 +109,11 @@ function Global:start-update {
 
         Start-Sleep -S 10  ## Gives User a chance to stop
 
+        ## Transfer HiveOS autofan settings 
+        if ($IsWindows) {
+            Global:Update-Autofan $Path
+        }
+        
         $ID = ".\build\pid\background_pid.txt"
         if ($global:IsWindows) {
             log "Stopping Previous Agent"
@@ -143,7 +181,130 @@ Access Denied Error prevented.
                     log "Pulled $OldJson"
 
                     try { $Data = $JsonData | ConvertFrom-Json -ErrorAction Stop } catch { }
- 
+                    if ($ChangeFile -eq "jayddee.json") {
+                        $Data | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name | ForEach-Object {
+                            if ($_ -ne "name") {
+                                $Data.$_.commands | Add-Member "c11" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "c11" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "c11" "c11" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "c11" 1 -ErrorAction SilentlyContinue
+                                $Data.$_.commands | Add-Member "hmq1725" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "hmq1725" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "hmq1725" "hmq1725" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "hmq1725" 1 -ErrorAction SilentlyContinue
+                            }
+                        }
+                    }
+                    if ($ChangeFile -eq "wilrig-a.json") {
+                        $Data | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name | ForEach-Object {
+                            if ($_ -ne "name") {
+                                $Data.$_.commands | Add-Member "evrprogpow" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "evrprogpow" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "evrprogpow" "evrprogpow" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "evrprogpow" 1 -ErrorAction SilentlyContinue
+
+                                $Data.$_.commands | Add-Member "evrprogpow" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "evrprogpow" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "evrprogpow" "evrprogpow" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "evrprogpow" 1 -ErrorAction SilentlyContinue
+                            }
+                        }
+                    }
+                    if ($ChangeFile -eq "wilrig-n.json") {
+                        $Data | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name | ForEach-Object {
+                            if ($_ -ne "name") {
+                                $Data.$_.commands | Add-Member "sha512256d" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "sha512256d" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "sha512256d" "sha512256d" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "sha512256d" 1 -ErrorAction SilentlyContinue
+
+                                $Data.$_.commands | Add-Member "evrprogpow" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "evrprogpow" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "evrprogpow" "evrprogpow" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "evrprogpow" 1 -ErrorAction SilentlyContinue
+                            }
+                        }
+                    }
+                    if ($ChangeFile -eq "srbmulti-a.json") {
+                        $Data | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name | ForEach-Object {
+                            if ($_ -ne "name") {
+                                $Data.$_.commands | Add-Member "sha512256d" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "sha512256d" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "sha512256d" "sha512_256d_radiant" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "sha512256d" 0.85 -ErrorAction SilentlyContinue
+                            }
+                        }
+                    }
+                    if ($ChangeFile -eq "fancyix.json") {
+                        $Data | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name | ForEach-Object {
+                            if ($_ -ne "name") {
+                                $Data.$_.commands | Add-Member "neoscrypt-xaya" "-w 256 -I 17 -s 1 -g 1" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "neoscrypt-xaya" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "neoscrypt-xaya" "neoscrypt-xaya" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "neoscrypt-xaya" 0.85 -ErrorAction SilentlyContinue
+                            }
+                        }
+                    }
+                    if ($ChangeFile -eq "teamredminer.json") {
+                        $Data | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name | ForEach-Object {
+                            if ($_ -ne "name") {
+                                $Data.$_.commands | Add-Member "heavyhash" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "heavyhash" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "heavyhash" "kaspa" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "heavyhash" 1 -ErrorAction SilentlyContinue
+                            }
+                        }
+                    }
+                    if ($ChangeFile -eq "lolminer-a.json") {
+                        $Data | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name | ForEach-Object {
+                            if ($_ -ne "name") {
+                                $Data.$_.commands | Add-Member "heavyhash" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "heavyhash" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "heavyhash" "KASPA" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "heavyhash" 0.75 -ErrorAction SilentlyContinue
+                            }
+                        }
+                    }
+                    if ($ChangeFile -eq "lolminer-n.json") {
+                        $Data | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name | ForEach-Object {
+                            if ($_ -ne "name") {
+                                $Data.$_.commands | Add-Member "heavyhash" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "heavyhash" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "heavyhash" "KASPA" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "heavyhash" 0.75 -ErrorAction SilentlyContinue
+                            }
+                        }
+                    }
+                    if ($ChangeFile -eq "gminer-a.json") {
+                        $Data | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name | ForEach-Object {
+                            if ($_ -ne "name") {
+                                $Data.$_.commands | Add-Member "heavyhash" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "heavyhash" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "heavyhash" "KASPA" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "heavyhash" 0.75 -ErrorAction SilentlyContinue
+                            }
+                        }
+                    }
+                    if ($ChangeFile -eq "gminer-a.json") {
+                        $Data | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name | ForEach-Object {
+                            if ($_ -ne "name") {
+                                $Data.$_.commands | Add-Member "heavyhash" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "heavyhash" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "heavyhash" "kheavyhash" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "heavyhash" 1 -ErrorAction SilentlyContinue
+                            }
+                        }
+                    }                    
+                    if ($ChangeFile -eq "gminer-n.json") {
+                        $Data | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name | ForEach-Object {
+                            if ($_ -ne "name") {
+                                $Data.$_.commands | Add-Member "heavyhash" "" -ErrorAction SilentlyContinue
+                                $Data.$_.difficulty | Add-Member "heavyhash" "" -ErrorAction SilentlyContinue 
+                                $Data.$_.naming | Add-Member "heavyhash" "kheavyhash" -ErrorAction SilentlyContinue
+                                $Data.$_.fee | Add-Member "heavyhash" 1 -ErrorAction SilentlyContinue
+                            }
+                        }
+                    }
                     $Data | ConvertTo-Json -Depth 10 | Set-Content $NewJson;
                     log "Wrote To $NewJson"
                 }

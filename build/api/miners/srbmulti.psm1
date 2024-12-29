@@ -16,7 +16,7 @@ function Global:Get-StatsSrbmulti {
         try { $Data = $Request.Content | ConvertFrom-Json -ErrorAction Stop }
         Catch { Write-Host "Failed To parse API" -ForegroundColor Red; Break }
         if ($Data) {
-            $global:RAW += $Data.algorithms.hashrate.now;
+            $global:RAW += $Data.algorithms.hashrate.'1min';
             $Hash = @()
             Global:Write-MinerData2;
             $Data.algorithms.hashrate.gpu | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name | ForEach-Object {
@@ -24,12 +24,12 @@ function Global:Get-StatsSrbmulti {
             }
             try {
                 for ($global:i = 0; $global:i -lt $Devices.Count; $global:i++) { 
-                    $global:GPUHashrates.$(Global:Get-GPUs) = (Global:Set-Array $Hash $global:i) / 1000 
+                    $global:GPUHashrates.$(Global:Get-GPUs) = (Global:Set-Array $Hash $global:i)
                 }
             }
             catch { Write-Host "Failed To parse Threads" -ForegroundColor Red };
             $global:MinerACC = $Data.algorithms.shares.accepted; $global:ALLACC += $Data.algorithms.shares.accepted 
-            $global:MinerREJ = $Data.algorithms.shares.rejected; $global:ALLREG += $Data.algorithms.shares.rejected
+            $global:MinerREJ = $Data.algorithms.shares.rejected; $global:ALLREJ += $Data.algorithms.shares.rejected
             $Hash | ForEach-Object { $global:GPUKHS += [Double]$_ / 1000 }
         }
     }

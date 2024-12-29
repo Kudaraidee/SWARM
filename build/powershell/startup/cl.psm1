@@ -11,12 +11,44 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #>
 
-function Global:get-AMDPlatform {
-        $Platform = "0"
-        $A = (clinfo) | Select-string "Platform Vendor"
-        $PlatformA = @()
-        for ($i = 0; $i -lt $A.Count; $i++) { $PlatSel = $A | Select-Object -Skip $i -First 1; $PlatSel = $PlatSel -replace "Platform Vendor", "$i"; $PlatSel = $PlatSel -replace ":", "="; $PlatformA += $PlatSel}
-        $PlatformA = $PlatformA | ConvertFrom-StringData
-        $PlatformA.keys | ForEach-Object {if ($PlatformA.$_ -eq "AMD Accelerated Parallel Processing" -or $PlatformA.$_ -eq "Advanced Micro Devices, Inc.") {$Platform = $_}}
-        return $Platform
+function Global:Get-AMDPlatform() {
+    Add-Type -Path ".\build\apps\psopencl\OpenCl.DotNetCore.dll"
+    Add-Type -Path ".\build\apps\psopencl\OpenCl.DotNetCore.Interop.dll"
+
+    $Platforms = @()
+    $GetPlatforms = [OpenCl.DotNetCore.Platforms.Platform]::GetPlatforms();
+
+    foreach ($Platform in $GetPlatforms) {
+        $Devices = @()    
+        try {
+            foreach ($device in $GetPlatforms.GetDevices([OpenCl.DotNetCore.Devices.DeviceType]::All)) {
+                $Devices += [PSCustomObject]@{
+                    platform    = $platform.Name
+                    version     = $platform.Version.MajorVersion + "." + $platform.Version.MinorVersion
+                    vendor      = $platform.Vendor
+                    name        = $device.Name
+                    driver      = $device.DriverVersion
+                    bits        = $device.AddressBits + "Bit"
+                    memory      = [Math]::Round(($device.GlobalMemorySize / 1GB), 2)
+                    clock_speed = $device.MaximumClockFrequency + "MHz"
+                    available   = $device.IsAvailable ? $true : $false
+                }
+            }
+        }
+        catch {
+
+        }
+        $Platforms += [PSCustomObject]@{
+            Platform = $Platform
+            Devices  = $Devices
+        }
+    }
+    For($i=0; $i -lt $platforms.Platform.Count; $i++) {
+        if($platforms.Platform[$i].Name -eq "AMD Accelerated Parallel Processing") {
+            return $i
+        }
+    }
+  return 0
 }
+
+

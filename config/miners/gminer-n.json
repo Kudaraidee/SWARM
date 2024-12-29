@@ -1,0 +1,138 @@
+{
+    "name": "gminer-n",
+    "NVIDIA1": {
+        "name": "NVIDIA1",
+        "delay": "1",
+        "prestart": [],
+        "commands": {
+            "ethash": "",
+            "etchash": "",
+            "kawpow": "",
+            "cortex": "",
+            "equihash_144/5": "",
+            "equihash_210/9": "",
+            "equihash_125/4": "",
+            "kheavyhash":""
+        },
+        "difficulty": {
+            "ethash": "",
+            "etchash": "",
+            "kawpow": "",
+            "cortex": "",
+            "equihash_144/5": "",
+            "equihash_210/9": "",
+            "equihash_125/4": "",
+            "kheavyhash":""
+        },
+        "naming": {
+            "ethash": "ethash",
+            "etchash": "etchash",
+            "kawpow": "kawpow",
+            "cortex": "cortex",
+            "equihash_144/5": "equihash_144/5",
+            "equihash_210/9": "equihash_210/9",
+            "equihash_125/4": "equihash_125/4",
+            "kheavyhash": "kheavyhash"
+        },
+        "fee": {
+            "ethash": 1,
+            "etchash": 1,
+            "kawpow": 1,
+            "cortex": 5,
+            "equihash_144/5": 2,
+            "equihash_210/9": 2,
+            "equihash_125/4": 2,
+            "kheavyhash": 1
+        }
+    },
+    "NVIDIA2": {
+        "name": "NVIDIA2",
+        "delay": "1",
+        "prestart": [],
+        "commands": {
+            "ethash": "",
+            "etchash": "",
+            "kawpow": "",
+            "cortex": "",
+            "equihash_144/5": "",
+            "equihash_210/9": "",
+            "equihash_125/4": "",
+            "kheavyhash":""
+        },
+        "difficulty": {
+            "ethash": "",
+            "etchash": "",
+            "kawpow": "",
+            "cortex": "",
+            "equihash_144/5": "",
+            "equihash_210/9": "",
+            "equihash_125/4": "",
+            "kheavyhash":""
+        },
+        "naming": {
+            "ethash": "ethash",
+            "etchash": "etchash",
+            "kawpow": "kawpow",
+            "cortex": "cortex",
+            "equihash_144/5": "equihash_144/5",
+            "equihash_210/9": "equihash_210/9",
+            "equihash_125/4": "equihash_125/4",
+            "kheavyhash": "kheavyhash"
+        },
+        "fee": {
+            "ethash": 1,
+            "etchash": 1,
+            "kawpow": 1,
+            "cortex": 5,
+            "equihash_144/5": 2,
+            "equihash_210/9": 2,
+            "equihash_125/4": 2,
+            "kheavyhash": 1
+        }
+    },
+    "NVIDIA3": {
+        "name": "NVIDIA3",
+        "delay": "1",
+        "prestart": [],
+        "commands": {
+            "ethash": "",
+            "etchash": "",
+            "kawpow": "",
+            "cortex": "",
+            "equihash_144/5": "",
+            "equihash_210/9": "",
+            "equihash_125/4": "",
+            "kheavyhash":""
+        },
+        "difficulty": {
+            "ethash": "",
+            "etchash": "",
+            "kawpow": "",
+            "cortex": "",
+            "equihash_144/5": "",
+            "equihash_210/9": "",
+            "equihash_125/4": "",
+            "kheavyhash":""
+        },
+        "naming": {
+            "ethash": "ethash",
+            "etchash": "etchash",
+            "kawpow": "kawpow",
+            "cortex": "cortex",
+            "equihash_144/5": "equihash_144/5",
+            "equihash_210/9": "equihash_210/9",
+            "equihash_125/4": "equihash_125/4",
+            "kheavyhash": "kheavyhash"
+        },
+        "fee": {
+            "ethash": 1,
+            "etchash": 1,
+            "kawpow": 1,
+            "cortex": 5,
+            "equihash_144/5": 2,
+            "equihash_210/9": 2,
+            "equihash_125/4": 2,
+            "kheavyhash": 1
+        }
+   }
+}

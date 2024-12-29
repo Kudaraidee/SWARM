@@ -1,0 +1,68 @@
+{
+    "name": "cklaust",
+    "NVIDIA1": {
+        "name": "NVIDIA1",
+        "delay": "1",
+        "prestart": [],
+        "commands": {
+            "lyra2rev3": "",
+            "neoscrypt-xaya": "-i 16.25"
+        },
+        "difficulty": {
+            "lyra2rev3": "",
+            "neoscrypt-xaya": ""
+        },
+        "naming": {
+            "lyra2rev3": "lyra2rev3",
+            "neoscrypt-xaya": "neoscrypt-xaya"
+        },
+        "fee": {
+            "lyra2rev3": 0,
+            "neoscrypt": 0,
+            "neoscrypt-xaya": 0
+        }
+    },
+    "NVIDIA2": {
+        "name": "NVIDIA2",
+        "delay": "1",
+        "prestart": [],
+        "commands": {
+            "lyra2rev3": "",
+            "neoscrypt-xaya": "-i 16.25"
+        },
+        "difficulty": {
+            "lyra2rev3": "",
+            "neoscrypt-xaya": ""
+        },
+        "naming": {
+            "lyra2rev3": "lyra2rev3",
+            "neoscrypt-xaya": "neoscrypt-xaya"
+        },
+        "fee": {
+            "lyra2rev3": 0,
+            "neoscrypt": 0,
+            "neoscrypt-xaya": 0
+        }
+    },
+    "NVIDIA3": {
+        "name": "NVIDIA3",
+        "delay": "1",
+        "prestart": [],
+        "commands": {
+            "lyra2rev3": "",
+            "neoscrypt-xaya": "-i 16.25"
+        },
+        "difficulty": {
+            "lyra2rev3": "",
+            "neoscrypt-xaya": ""
+        },
+        "naming": {
+            "lyra2rev3": "lyra2rev3",
+            "neoscrypt-xaya": "neoscrypt-xaya"
+        },
+        "fee": {
+            "lyra2rev3": 0,
+            "neoscrypt-xaya": 0
+        }
+    }
+}

@@ -1,8 +1,5 @@
 {
     "AlgoBanCount": 3,
-    "Algorithm": [
-        ""
-    ],
     "AltPassword1": "",
     "AltPassword2": "",
     "AltPassword3": "",
@@ -23,7 +20,6 @@
     "Auto_Coin": "No",
     "Ban_GLT": "No",
     "Bans": [],
-    "Benchmark": 2,
     "CLPlatform": "",
     "Coin": [
         ""
@@ -31,6 +27,9 @@
     "Coin_Params": [],
     "CoinExchange": "ETH",
     "Conserve": "No",
+    "CPUAlgorithm": [
+        ""
+    ],
     "CPUOnly": "No",
     "CPUThreads": "",
     "Cuda": "10.1",
@@ -38,6 +37,15 @@
     "Custom_Periods": 1,
     "Donate": 0.5,
     "ETH": "",
+    "GPUAlgorithm1": [
+        ""
+    ],
+    "GPUAlgorithm2": [
+        ""
+    ],
+    "GPUAlgorithm3": [
+        ""
+    ],
     "GPUDevices1": [
         ""
     ],
@@ -47,10 +55,9 @@
     "GPUDevices3": [
         ""
     ],
-    "Historical_Bias": "25:1",
+    "Historical_Bias": "1:1",
     "Hive_Hash": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "HiveOS": "No",
-    "Interval": 5,
     "kwh": "",
     "Lite": "No",
     "Location": "US",
@@ -60,7 +67,7 @@
     "Nicehash_Wallet1": "",
     "Nicehash_Wallet2": "",
     "Nicehash_Wallet3": "",
-    "optional": [],
+    "Optional": [],
     "Passwordcurrency1": "BTC",
     "Passwordcurrency2": "BTC",
     "Passwordcurrency3": "BTC",
@@ -106,7 +113,7 @@
     "Admin_Pass": "BTC",
     "Rej_Factor": "Yes",
     "cpu_priority": 0,
-    "Min_Blocks": 1,
+    "Min_Blocks": 4,
     "Hidden": "No",
     "Throttle": 0,
     "Hashrate_Threshold": 10,

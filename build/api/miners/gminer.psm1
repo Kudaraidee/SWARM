@@ -21,12 +21,17 @@ function Global:Get-StatsGminer {
             Global:Write-MinerData2;
             try { 
                 for ($global:i = 0; $global:i -lt $Devices.Count; $global:i++) { 
-                    $global:GPUHashrates.$(Global:Get-GPUs) = (Global:Set-Array $Hash $global:i) / 1000 
+                    $global:GPUHashrates.$(Global:Get-GPUs) = (Global:Set-Array $Hash $global:i) 
                 }
             }
             catch { Write-Host "Failed To parse Threads" -ForegroundColor Red };
-            $Data.devices.accepted_shares | Select-Object -First 1 | ForEach-Object { $global:MinerACC = $_; $global:ALLACC += $_ }
-            $Data.devices.rejected_shares | Select-Object -First 1 | ForEach-Object { $global:MinerREJ = $_; $global:ALLREJ += $_ }
+            #$Data.devices.accepted_shares | Select-Object -First 1 | ForEach-Object { $global:MinerACC = $_; $global:ALLACC += $_ }
+            #$Data.devices.rejected_shares | Select-Object -First 1 | ForEach-Object { $global:MinerREJ = $_; $global:ALLREJ += $_ }
+            $global:MinerACC = [int]$Data.total_accepted_shares
+            $global:ALLACC += [int]$Data.total_accepted_shares
+            $global:MinerREJ = [int]$Data.total_rejected_shares
+            $global:ALLREJ += [int]$Data.total_rejected_shares
+
             $Data.devices.speed | ForEach-Object { $global:GPUKHS += [Double]$_ / 1000 }
         }
     }

@@ -13,7 +13,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 param(
     # Parameter help description
-    [Parameter(mandatory=$false)]
+    [Parameter(mandatory = $false)]
     [string]$WorkingDir
 )
 
@@ -30,7 +30,7 @@ if ($isWindows) {
 }
 #$WorkingDir = "C:\Users\Mayna\Documents\GitHub\SWARM"
 #$WorkingDir = "/SWARM"
-if($IsLinux){
+if ($IsLinux) {
     $env:SWARM_DIR = $WorkingDir;
 }
 Set-Location $env:SWARM_DIR
@@ -41,7 +41,7 @@ $Global:config = [hashtable]::Synchronized(@{ })
 $global:config.Add("vars", @{ })
 . .\build\powershell\global\modules.ps1
 $(vars).Add("dir", $env:SWARM_DIR)
-if($isWindows){$env:Path += ";$($(vars).dir)\build\cmd"}
+if ($isWindows) { $env:Path += ";$($(vars).dir)\build\cmd" }
 
 try { if ((Get-MpPreference).ExclusionPath -notcontains (Convert-Path .)) { Start-Process "powershell" -Verb runAs -ArgumentList "Add-MpPreference -ExclusionPath `'$WorkingDir`'" -WindowStyle Minimized } }catch { }
 try { $Net = Get-NetFireWallRule } catch { }
@@ -121,6 +121,7 @@ $global:CPUHashTable = $null
 $global:CPUKHS = $null
 $global:ASICHashrates = $null
 $global:ASICKHS = $null
+$global:Bus_Numbers = $null
 $global:ramfree = $null
 $global:diskSpace = $null
 $global:ramtotal = $null
@@ -132,6 +133,9 @@ if (Test-Path $CheckForSWARM) {
     $Global:GETSWARM = Get-Process | Where-Object ID -eq $global:GETSWARMID
 }
 $(vars).ADD("GCount", (Get-Content ".\debug\devicelist.txt" | ConvertFrom-Json))
+$(vars).ADD("BusData", @{})
+if (Test-Path ".\debug\busdata.txt") { $(vars).BusData = (Get-Content ".\debug\busdata.txt" | ConvertFrom-Json) }
+$(vars).BusData = $(vars).BusData | Where-Object { $_.brand -ne "cpu" }
 $(vars).ADD("BackgroundTimer", (New-Object -TypeName System.Diagnostics.Stopwatch))
 $(vars).ADD("watchdog_start", (Get-Date))
 $(vars).ADD("watchdog_triggered", $false)
@@ -167,6 +171,7 @@ While ($True) {
     $global:CPUOnly = $True ; $global:DoCPU = $false; $global:DoAMD = $false; 
     $global:DoNVIDIA = $false; $global:DoASIC = $false; $global:AllKHS = 0; 
     $global:AllACC = 0; $global:ALLREJ = 0;
+    $global:AllRAW = 0;
     $global:HIVE_ALGO = @{ }; $Group1 = $null; $Default_Group = $null; 
     $Hive = $null; $global:UPTIME = 0; $global:Web_Stratum = @{ }; $global:Workers = @{ }
 
@@ -192,7 +197,7 @@ While ($True) {
             ## Static Miner Information
             $global:MinerAlgo = "$($_.Algo)"; $global:MinerName = "$($_.MinerName)"; $global:Name = "$($_.Name)";
             $global:Port = $($_.Port); $global:MinerType = "$($_.Type)"; $global:MinerAPI = "$($_.API)";
-            $global:Server = "$($_.Server)"; $HashPath = ".\logs\$($_.Type).log"; $global:TypeS = "none"
+            $global:Server = "$($_.Server)"; $global:TypeS = "none";
             $global:Devices = 0; $MinerDevices = $_.Devices; $MinerStratum = $_.Stratum; $Worker = $_.Worker
 
             ##Algorithm Parsing For Stats
@@ -585,6 +590,14 @@ While ($True) {
                     }
                     catch { Global:Get-OhNo } 
                 }
+                'srbmulti-cpu' { 
+                    try { 
+                        Global:Add-Module "$($(vars).miners)\srbcpu.psm1"; 
+                        Global:Get-StatsSrbcpu
+                        Remove-Module -name "srbcpu"
+                    }
+                    catch { Global:Get-OhNo }
+                }    
             }
 
             ##Check To See if High Rejections
@@ -594,9 +607,11 @@ While ($True) {
             if ($RJPercent -gt $(arg).Rejections -and $Shares -gt 0) {
                 Write-Host "Warning: Miner is reaching Rejection Limit- $($RJPercent.ToString("N2")) Percent Out of $Shares Shares" -foreground yellow
             }
+
             
             ## ADD Power to API
             if ($global:TypeS -eq "NVIDIA" -or $global:TypeS -eq "AMD") {
+                $global:AllRAW += $global:RAW
                 $WattValue = 0
                 $Global:Devices | Foreach-Object { 
                     $WattGPU = $(vars).GCOUNT.$global:TypeS.$_
@@ -620,15 +635,17 @@ While ($True) {
     if ($global:Workers.Main) { $Global:StatWorker = $global:Workers.Main }
     else { $FirstWorker = $global:Workers.keys | Select-Object -First 1; if ($FirstWorker) { $Global:StatWorker = $global:Workers.$FirstWorker } }
 
+
+    $global:Bus_Numbers = @();
     ##Now To Format All Stats For Online Table And Screen
     if ($global:DoNVIDIA) {
         for ($global:i = 0; $global:i -lt $(vars).GCount.NVIDIA.PSObject.Properties.Value.Count; $global:i++) {
-            $global:GPUHashTable += 0; $global:GPUFanTable += 0; $global:GPUTempTable += 0; $global:GPUPowerTable += 0;
+            $global:GPUHashTable += 0; $global:GPUFanTable += 0; $global:GPUTempTable += 0; $global:GPUPowerTable += 0; $global:Bus_Numbers += 0;
         }
     }
     if ($global:DoAMD) {
         for ($global:i = 0; $global:i -lt $(vars).GCount.AMD.PSObject.Properties.Value.Count; $global:i++) {
-            $global:GPUHashTable += 0; $global:GPUFanTable += 0; $global:GPUTempTable += 0; $global:GPUPowerTable += 0;
+            $global:GPUHashTable += 0; $global:GPUFanTable += 0; $global:GPUTempTable += 0; $global:GPUPowerTable += 0; $global:Bus_Numbers += 0;
         }
     }
     if ($global:DoCPU) {
@@ -643,30 +660,34 @@ While ($True) {
 
     if ($global:DoNVIDIA) {
         for ($global:i = 0; $global:i -lt $(vars).GCount.NVIDIA.PSObject.Properties.Value.Count; $global:i++) {
-            $global:GPUHashTable[$($(vars).GCount.NVIDIA.$global:i)] = "{0:f6}" -f $($global:GPUHashrates.$($(vars).GCount.NVIDIA.$global:i))
+            $global:GPUHashTable[$($(vars).GCount.NVIDIA.$global:i)] = "$($global:GPUHashrates.$($(vars).GCount.NVIDIA.$global:i))"
             $global:GPUFanTable[$($(vars).GCount.NVIDIA.$global:i)] = "$($global:GPUFans.$($(vars).GCount.NVIDIA.$global:i))"
             $global:GPUTempTable[$($(vars).GCount.NVIDIA.$global:i)] = "$($global:GPUTemps.$($(vars).GCount.NVIDIA.$global:i))"
             $global:GPUPowerTable[$($(vars).GCount.NVIDIA.$global:i)] = "$($global:GPUPower.$($(vars).GCount.NVIDIA.$global:i))"
+            $bus_id = [int]"0x$($(vars).BusData[($(vars).GCount.NVIDIA.$global:i)].busid.Split(":") | Select-Object -First 1)"
+            $global:Bus_Numbers[($(vars).GCount.NVIDIA.$global:i)] = $bus_id;
         }
     }
     if ($global:DoAMD) {
         for ($global:i = 0; $global:i -lt $(vars).GCount.AMD.PSObject.Properties.Value.Count; $global:i++) {
-            $global:GPUHashTable[$($(vars).GCount.AMD.$global:i)] = "{0:f6}" -f $($global:GPUHashrates.$($(vars).GCount.AMD.$global:i))
+            $global:GPUHashTable[$($(vars).GCount.AMD.$global:i)] = "$($global:GPUHashrates.$($(vars).GCount.AMD.$global:i))"
             $global:GPUFanTable[$($(vars).GCount.AMD.$global:i)] = "$($global:GPUFans.$($(vars).GCount.AMD.$global:i))"
             $global:GPUTempTable[$($(vars).GCount.AMD.$global:i)] = "$($global:GPUTemps.$($(vars).GCount.AMD.$global:i))"
             $global:GPUPowerTable[$($(vars).GCount.AMD.$global:i)] = "$($global:GPUPower.$($(vars).GCount.AMD.$global:i))"
+            $bus_id = [int]"0x$($(vars).BusData[($(vars).GCount.AMD.$global:i)].busid.Split(":") | Select-Object -First 1)"
+            $global:Bus_Numbers[($(vars).GCount.AMD.$global:i)] = $bus_id;
         }
     }
 
     if ($global:DoCPU) {
         for ($global:i = 0; $global:i -lt $(vars).GCount.CPU.PSObject.Properties.Value.Count; $global:i++) {
-            $global:CPUHashTable[$($(vars).GCount.CPU.$global:i)] = "{0:f6}" -f $($global:CPUHashrates.$($(vars).GCount.CPU.$global:i))
+            $global:CPUHashTable[$($(vars).GCount.CPU.$global:i)] = "$($global:CPUHashrates.$($(vars).GCount.CPU.$global:i))"
         }
     }
 
     if ($global:DoASIC) {
         for ($global:i = 0; $global:i -lt $numbers; $global:i++) { 
-            $global:ASICHashTable[$global:i] = "{0:f6}" -f $($global:ASICHashrates.$($global:i)) 
+            $global:ASICHashTable[$global:i] = "$($global:ASICHashrates.$($global:i))"
         } 
         Remove-Variable numbers -ErrorAction Ignore
     }
@@ -717,23 +738,24 @@ While ($True) {
         summary = $global:MinerTable;
     }
     $global:Config.stats = @{
-        gpus       = @($global:GPUHashTable);
-        cpus       = @($global:CPUHashTable);
-        asics      = @($global:ASICHashTable);
-        cpu_total  = $global:CPUKHS;
-        asic_total = $global:ASICKHS;
-        gpu_total  = $global:GPUKHS;
-        algo       = $Global:StatAlgo;
-        uptime     = $global:UPTIME;
-        hsu        = "khs";
-        fans       = @($global:GPUFanTable);
-        temps      = @($global:GPUTempTable);
-        power      = @($global:GPUPowerTable);
-        accepted   = $global:AllACC;
-        rejected   = $global:AllREJ;
-        stratum    = $Global:StatStratum;
-        start_time = $Global:StartTime;
-        workername = $Global:StatWorker;
+        gpus          = @($global:GPUHashTable);
+        cpus          = @($global:CPUHashTable);
+        asics         = @($global:ASICHashTable);
+        cpu_total     = $global:CPUKHS;
+        asic_total    = $global:ASICKHS;
+        gpu_total_khs = ($global:AllRAW / 1000)
+        algo          = $Global:StatAlgo;
+        uptime        = $global:UPTIME;
+        hsu           = "hs";
+        fans          = @($global:GPUFanTable);
+        temps         = @($global:GPUTempTable);
+        power         = @($global:GPUPowerTable);
+        accepted      = $global:AllACC;
+        rejected      = $global:AllREJ;
+        stratum       = $Global:StatStratum;
+        start_time    = $Global:StartTime;
+        workername    = $Global:StatWorker;
+        bus_numbers   = @($global:Bus_Numbers);
     }
     $global:Config.params = $(arg)
 
@@ -745,6 +767,7 @@ While ($True) {
         if ($global:DoAMD -or $global:DoNVIDIA) { Write-Host "GPU_Fans: $global:GPUFanTable" -ForegroundColor Yellow }
         if ($global:DoAMD -or $global:DoNVIDIA) { Write-Host "GPU_Temps: $global:GPUTempTable" -ForegroundColor Cyan }
         if ($global:DoAMD -or $global:DoNVIDIA) { Write-Host "GPU_Power: $global:GPUPowerTable"  -ForegroundColor Magenta }
+        if ($global:DoAMD -or $global:DoNVIDIA) { Write-Host "GPU_BUS_Numbers: $global:Bus_Numbers" -ForegroundColor Yellow }
         if ($global:DoAMD -or $global:DoNVIDIA) { Write-Host "GPU_TOTAL_KHS: $global:GPUKHS" -ForegroundColor Yellow }
         if ($global:DoCPU) { Write-Host "CPU_TOTAL_KHS: $global:CPUKHS" -ForegroundColor Yellow }
         if ($global:DoASIC) { Write-Host "ASIC_TOTAL_KHS: $global:ASICKHS" -ForegroundColor Yellow }

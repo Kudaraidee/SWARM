@@ -102,7 +102,7 @@ function Global:Start-LaunchCode($MinerCurrent, $AIP) {
         $Export = Join-Path $($(vars).dir) "build\export"
         $PIDMiners = "$($MinerCurrent.Type)"
         if (Test-Path ".\build\pid\*$PIDMiners*") { Remove-Item ".\build\pid\*$PIDMiners*" }
-        $Logs = Join-Path $($(vars).dir) "logs\$($MinerCurrent.Type).log" 
+        $Logs = Join-Path $($(vars).dir) "logs\$($MinerCurrent.Name).log" 
 
         switch -WildCard ($MinerCurrent.Type) {
             "*NVIDIA*" {
@@ -114,7 +114,7 @@ function Global:Start-LaunchCode($MinerCurrent, $AIP) {
                         "miniz" { $MinerArguments = "-cd $($MinerCurrent.Devices) $($MinerCurrent.Arguments)" }
                         "energiminer" { $MinerArguments = "--cuda-devices $($MinerCurrent.Devices) $($MinerCurrent.Arguments)" }
                         "gminer" { $MinerArguments = "-d $($MinerCurrent.ArgDevices) $($MinerCurrent.Arguments)" }
-                        "wildrig-nv" { $MinerArguments = "--opencl-devices $($MinerCurrent.ArgDevices) $($MinerCurrent.Arguments)" }
+                        "wildrig-n" { $MinerArguments = "--opencl-devices $($MinerCurrent.ArgDevices) $($MinerCurrent.Arguments)" }
                         "dstm" { $MinerArguments = "--dev $($MinerCurrent.Devices) $($MinerCurrent.Arguments)" }
                         "claymore" { $MinerArguments = "-di $($MinerCurrent.Devices) $($MinerCurrent.Arguments)" }
                         "trex" { $MinerArguments = "-d $($MinerCurrent.Devices) $($MinerCurrent.Arguments)" }
@@ -123,6 +123,7 @@ function Global:Start-LaunchCode($MinerCurrent, $AIP) {
                         "lolminer" { $MinerArguments = "--devices $($MinerCurrent.Devices) $($MinerCurrent.Arguments)" }
                         "xmrstak" { $MinerArguments = "--cuda-devices $($MinerCurrent.Devices) $($MinerCurrent.Arguments)" }
                         "progminer" { $MinerArguments = "--cuda-devices $($MinerCurrent.Devices) $($MinerCurrent.Arguments)" }
+                        "srbmulti-n" { $MinerArguments = "$($MinerCurrent.Arguments) --gpu-id $($MinerCurrent.Devices)" }
                         "grin-miner" { global:set-minerconfig $NewMiner $Logs }
                         "zjazz" {
                             $GetDevices = $($MinerCurrent.Devices) -split ","
@@ -150,7 +151,7 @@ function Global:Start-LaunchCode($MinerCurrent, $AIP) {
                         }
                         "grin-miner" { global:set-minerconfig $NewMiner $Logs }
                         "gminer" { $MinerArguments = "-d $($MinerCurrent.ArgDevices) $($MinerCurrent.Arguments)" }
-                        "wildrig-nv" { $MinerArguments = "--opencl-devices $($MinerCurrent.ArgDevices) $($MinerCurrent.Arguments)" }
+                        "wildrig-n" { $MinerArguments = "--opencl-devices $($MinerCurrent.ArgDevices) $($MinerCurrent.Arguments)" }
                         "lolminer" { $MinerArguments = "--devices NVIDIA $($MinerCurrent.Arguments)" }
                         "nanominer" { global:set-minerconfig $MinerCurrent $Logs }
                         default { $MinerArguments = "$($MinerCurrent.Arguments)" }
@@ -223,6 +224,7 @@ function Global:Start-LaunchCode($MinerCurrent, $AIP) {
                 if ($MinerCurrent.Devices -eq '') { $MinerArguments = "$($MinerCurrent.Arguments)" }
                 elseif ($MinerCurrent.DeviceCall -eq "cpuminer-opt") { $MinerArguments = "-t $($MinerCurrent.Devices) $($MinerCurrent.Arguments)" }
                 elseif ($MinerCurrent.DeviceCall -eq "xmrig-opt") { $MinerArguments = "-t $($MinerCurrent.Devices) $($MinerCurrent.Arguments)" }
+                elseif ($MinerCurrent.DeviceCall -eq "srbmulti-cpu") { $MinerArguments = "--cpu-threads $($MinerCurrent.Devices) $($MinerCurrent.Arguments)" }
             }
         }
 

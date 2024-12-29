@@ -33,31 +33,33 @@ disk-expand
 rm -rf /opt/microsoft/powershell/
 rm -rf /usr/bin/pwsh
 rm -rf /usr/bin/pwsh-preview
-wget https://github.com/PowerShell/PowerShell/releases/download/v7.1.0/powershell-7.1.0-linux-x64.tar.gz -O /tmp/powershell.tar.gz --no-check-certificate
-mkdir -p /opt/microsoft/powershell/7.1.0
-tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7.1.0
-chmod +x /opt/microsoft/powershell/7.1.0/pwsh
-ln -s /opt/microsoft/powershell/7.1.0/pwsh /usr/bin/pwsh
+wget https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/powershell-7.2.7-linux-x64.tar.gz -O /tmp/powershell.tar.gz --no-check-certificate
+mkdir -p /opt/microsoft/powershell/7.2.7
+tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7.2.7
+chmod +x /opt/microsoft/powershell/7.2.7/pwsh
+ln -s /opt/microsoft/powershell/7.2.7/pwsh /usr/bin/pwsh
 rm -rf /tmp/powershell.tar.gz
 fi
 
 PVERSION=`pwsh -version`
 
 ## If pwsh is wrong version, install it again.
-if [ "$PVERSION" != "PowerShell 7.1.0" ]; then
+if [ "$PVERSION" != "PowerShell 7.2.7" ]; then
 echo "updating powershell to latest version"
 echo "removing lib folder"
 rm -rf /usr/local/swarm
 rm -rf /opt/microsoft/powershell/
 rm -rf /usr/bin/pwsh
 rm -rf /usr/bin/pwsh-preview
-wget https://github.com/PowerShell/PowerShell/releases/download/v7.1.0/powershell-7.1.0-linux-x64.tar.gz -O /tmp/powershell.tar.gz --no-check-certificate
-mkdir -p /opt/microsoft/powershell/7.1.0
-tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7.1.0
-chmod +x /opt/microsoft/powershell/7.1.0/pwsh
-ln -s /opt/microsoft/powershell/7.1.0/pwsh /usr/bin/pwsh
+wget https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/powershell-7.2.7-linux-x64.tar.gz -O /tmp/powershell.tar.gz --no-check-certificate
+mkdir -p /opt/microsoft/powershell/7.2.7
+tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7.2.7
+chmod +x /opt/microsoft/powershell/7.2.7/pwsh
+ln -s /opt/microsoft/powershell/7.2.7/pwsh /usr/bin/pwsh
 rm -rf /tmp/powershell.tar.gz
 fi
+
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
 
 ## remove old config.json
 SWARM_CONFIG_FILE=config.json

@@ -1,0 +1,54 @@
+{
+    "name": "xmrig-n",
+    "NVIDIA1": {
+        "name": "NVIDIA1",
+        "delay": "1",
+        "prestart": [],
+        "commands": {
+            "kawpow": ""
+        },
+        "difficulty": {
+            "kawpow": ""
+        },
+        "naming": {
+            "kawpow": "kawpow"
+        },
+        "fee": {
+            "kawpow": 1
+        }   
+    },
+    "NVIDIA2": {
+        "name": "NVIDIA2",
+        "delay": "1",
+        "prestart": [],
+        "commands": {
+            "kawpow": ""
+        },
+        "difficulty": {
+            "kawpow": ""
+        },
+        "naming": {
+            "kawpow": "kawpow"
+        },
+        "fee": {
+            "kawpow": 1
+        }   
+    },
+    "NVIDIA3": {
+        "name": "NVIDIA3",
+        "delay": "1",
+        "prestart": [],
+        "commands": {
+            "kawpow": ""
+        },
+        "difficulty": {
+            "kawpow": ""
+        },
+        "naming": {
+            "kawpow": "kawpow"
+        },
+        "fee": {
+            "kawpow": 1
+        }   
+    }
+}

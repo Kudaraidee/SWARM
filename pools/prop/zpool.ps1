@@ -19,7 +19,7 @@ if ($Name -in $(arg).PoolName) {
     $X = ""
     if ($(arg).xnsub -eq "Yes") { $X = "#xnsub" } 
 
-    try { $Pool_Request = Invoke-RestMethod "https://www.zpool.ca/api/status" -UseBasicParsing -TimeoutSec 10 -ErrorAction Stop } 
+    try { $Pool_Request = Invoke-RestMethod "https://www.zpool.ca/api/status" -UseBasicParsing -TimeoutSec 30 -ErrorAction Stop } 
     catch { return "WARNING: SWARM contacted ($Name) but there was no response." }
  
     if (($Pool_Request | Get-Member -MemberType NoteProperty -ErrorAction Ignore | Measure-Object Name).Count -le 1) { 
@@ -27,8 +27,9 @@ if ($Name -in $(arg).PoolName) {
     }
 
     $Algos = @()
-    $Algos += $(vars).Algorithm
-    $Algos += $(arg).ASIC_ALGO
+    $Algos = @()
+    $(vars).Algorithm | Foreach-Object { $Algos += $_ }
+    $(arg).ASIC_ALGO | ForEach-Object { $Algos += $_ }
     
     ## Only get algos we need & convert name to universal schema
     $Pool_Algos = $global:Config.Pool_Algos;
@@ -177,11 +178,11 @@ if ($Name -in $(arg).PoolName) {
                 ## User3
                 $User3,
                 ## Pass1
-                "c=$Pass1,id=$($Params.RigName1)",
+                "$($Params.RigName1),c=$Pass1",
                 ## Pass2
-                "c=$Pass2,id=$($Params.RigName2)",
+                "$($Params.RigName2),c=$Pass2",
                 ## Pass3
-                "c=$Pass3,id=$($Params.RigName3)",
+                "$($Params.RigName3),c=$Pass3",
                 ## Previous
                 $actual
             )
