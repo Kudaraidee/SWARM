@@ -18,9 +18,9 @@
     "NVIDIA2": ".\\bin\\nbminer-2\\nbminer",
     "NVIDIA3": ".\\bin\\nbminer-3\\nbminer",
     "minername": "nbminer",
-    "version": "36.1",
+    "version": "42.3",
     "optional": "No",
-    "uri": "https://github.com/NebuTech/NBMiner/releases/download/v36.1/NBMiner_36.1_Linux.tgz"
+    "uri": "https://github.com/NebuTech/NBMiner/releases/download/v42.3/NBMiner_42.3_Linux.tgz"
   },
   "multiminer": {
     "name": "multiminer",
@@ -40,20 +40,9 @@
     "NVIDIA2": ".\\bin\\phoenix-2\\PhoenixMiner",
     "NVIDIA3": ".\\bin\\phoenix-3\\PhoenixMiner",
     "minername": "PhoenixMiner",
-    "version": "5.4c",
+    "version": "6.2c",
     "optional": "No",
-    "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v5.0/phoenix-linux.tar.gz"
-  },
-  "cryptodredge": {
-    "name": "cryptodredge",
-    "type": "nvidia",
-    "NVIDIA1": ".\\bin\\cryptodredge-1\\CryptoDredge",
-    "NVIDIA2": ".\\bin\\cryptodredge-2\\CryptoDredge",
-    "NVIDIA3": ".\\bin\\cryptodredge-3\\CryptoDredge",
-    "minername": "CryptoDredge",
-    "version": "0.26.0",
-    "optional": "No",
-    "uri": "https://github.com/technobyl/CryptoDredge/releases/download/v0.26.0/CryptoDredge_0.26.0_cuda_11.2_linux.tar.gz"
+    "uri": "https://phoenixminer.info/downloads/PhoenixMiner_6.2c_Linux.tar.gz"
   },
   "cc-sha3d": {
     "name": "cc-sha3d",
@@ -73,9 +62,9 @@
     "NVIDIA2": ".\\bin\\cc-mtp-2\\ccminer",
     "NVIDIA3": ".\\bin\\cc-mtp-3\\ccminer",
     "minername": "ccminer",
-    "version": "1.3.1",
+    "version": "1.3.2",
     "optional": "Yes",
-    "uri": "https://github.com/zcoinofficial/ccminer/releases/download/1.2.0/ccminer_linux_cuda101"
+    "uri": "https://github.com/zcoinofficial/ccminer/releases/download/1.3.2/ccminer_linux_cuda102"
   },
   "dstm": {
     "name": "dstm",
@@ -110,12 +99,12 @@
     "optional": "Yes",
     "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v4.0/ewbf-linux.tar.gz"
   },
-  "cc-yescrypt": {
-    "name": "cc-yescrypt",
+  "cyescrypt": {
+    "name": "cyescrypt",
     "type": "nvidia",
-    "NVIDIA1": ".\\bin\\cc-yescrypt-1\\ccminer",
-    "NVIDIA2": ".\\bin\\cc-yescrypt-2\\ccminer",
-    "NVIDIA3": ".\\bin\\cc-yescrypt-3\\ccminer",
+    "NVIDIA1": ".\\bin\\cyescrypt-1\\ccminer",
+    "NVIDIA2": ".\\bin\\cyescrypt-2\\ccminer",
+    "NVIDIA3": ".\\bin\\cyescrypt-3\\ccminer",
     "minername": "ccminer",
     "version": "10c",
     "optional": "No",
@@ -143,16 +132,27 @@
     "optional": "Yes",
     "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v4.0/ehssand-linux.tar.gz"
   },
-  "klaust": {
-    "name": "klaust",
+  "cxaya": {
+    "name": "cxaya",
     "type": "nvidia",
-    "NVIDIA1": ".\\bin\\klaust-1\\ccminer",
-    "NVIDIA2": ".\\bin\\klaust-2\\ccminer",
-    "NVIDIA3": ".\\bin\\klaust-3\\ccminer",
+    "NVIDIA1": ".\\bin\\cxaya-1\\ccminer",
+    "NVIDIA2": ".\\bin\\cxaya-2\\ccminer",
+    "NVIDIA3": ".\\bin\\cxaya-3\\ccminer",
     "minername": "ccminer",
-    "version": "8.24",
+    "version": "8.26",
+    "optional": "No",
+    "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v4.0/cxaya-linux.tar.gz"
+  },
+  "cklaust": {
+    "name": "cklaust",
+    "type": "nvidia",
+    "NVIDIA1": ".\\bin\\cklaust-1\\ccminer",
+    "NVIDIA2": ".\\bin\\cklaust-2\\ccminer",
+    "NVIDIA3": ".\\bin\\cklaust-3\\ccminer",
+    "minername": "ccminer",
+    "version": "8.26",
     "optional": "Yes",
-    "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v4.0/klaust-linux-10.tar.gz"
+    "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v4.0/cklaust-linux.tar.gz"
   },
   "tpruvot": {
     "name": "tpruvot",
@@ -183,9 +183,9 @@
     "NVIDIA2": ".\\bin\\t-rex-2\\t-rex",
     "NVIDIA3": ".\\bin\\t-rex-3\\t-rex",
     "minername": "t-rex",
-    "version": "0.19.5",
+    "version": "0.26.68",
     "optional": "No",
-    "uri": "https://github.com/trexminer/T-Rex/releases/download/0.19.5/t-rex-0.19.5-linux-cuda11.1.tar.gz"
+    "uri": "https://github.com/trexminer/T-Rex/releases/download/0.26.8/t-rex-0.26.8-linux.tar.gz"
   },
   "zjazz": {
     "name": "zjazz",
@@ -209,16 +209,16 @@
     "optional": "Yes",
     "uri": "https://github.com/nicehash/excavator/releases/download/v1.5.13a/excavator_1.5.13a-cuda10_amd64.deb"
   },
-  "gminer": {
-    "name": "gminer",
+  "gminer-n": {
+    "name": "gminer-n",
     "type": "nvidia",
-    "NVIDIA1": ".\\bin\\gminer-1\\miner",
-    "NVIDIA2": ".\\bin\\gminer-2\\miner",
-    "NVIDIA3": ".\\bin\\gminer-3\\miner",
+    "NVIDIA1": ".\\bin\\gminer-n-1\\miner",
+    "NVIDIA2": ".\\bin\\gminer-n-2\\miner",
+    "NVIDIA3": ".\\bin\\gminer-n-3\\miner",
     "minername": "miner",
-    "version": "2.36",
+    "version": "3.12",
     "optional": "No",
-    "uri": "https://github.com/develsoftware/GMinerRelease/releases/download/2.36/gminer_2_36_linux64.tar.xz"
+    "uri": "https://github.com/develsoftware/GMinerRelease/releases/download/3.12/gminer_3_12_linux64.tar.xz"
   },
   "grin-miner": {
     "name": "grin-miner",
@@ -231,25 +231,25 @@
     "optional": "Yes",
     "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v5.0/grin-miner-linux.tar.gz"
   },
-  "bminer": {
+   "bminer": {
     "name": "bminer",
     "type": "nvidia",
     "NVIDIA1": ".\\bin\\bminer-1\\bminer",
     "NVIDIA2": ".\\bin\\bminer-2\\bminer",
     "NVIDIA3": ".\\bin\\bminer-3\\bminer",
     "minername": "bminer",
-    "version": "16.3.7",
+    "version": "16.4.11",
     "optional": "No",
-    "uri": "https://www.bminercontent.com/releases/bminer-v16.3.7-d9521d5-amd64.tar.xz"
+    "uri": "https://www.bminercontent.com/releases/bminer-v16.4.11-2849b5c-amd64.tar.xz"
   },
-  "miniz": {
-    "name": "miniz",
+  "miniz-n": {
+    "name": "miniz-n",
     "type": "nvidia",
-    "NVIDIA1": ".\\bin\\miniz-1\\miniZ",
-    "NVIDIA2": ".\\bin\\miniz-2\\miniZ",
-    "NVIDIA3": ".\\bin\\miniz-3\\miniZ",
+    "NVIDIA1": ".\\bin\\miniz-n-1\\miniZ",
+    "NVIDIA2": ".\\bin\\miniz-n-2\\miniZ",
+    "NVIDIA3": ".\\bin\\miniz-n-3\\miniZ",
     "minername": "miniZ",
-    "version": "v1.6x",
+    "version": "v1.9z5b",
     "optional": "No",
     "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v4.0/miniz-linux.tar.gz"
   },
@@ -264,23 +264,23 @@
     "optional": "Yes",
     "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v5.0/progminer-linux-10.tar.gz"
   },
-  "xmrig-nv": {
-    "name": "xmrig-nv",
+  "xmrig-n": {
+    "name": "xmrig-n",
     "type": "nvidia",
-    "NVIDIA1": ".\\bin\\xmrig-nv-1\\xmrig",
-    "NVIDIA2": ".\\bin\\xmrig-nv-2\\xmrig",
-    "NVIDIA3": ".\\bin\\xmrig-nv-3\\xmrig",
+    "NVIDIA1": ".\\bin\\xmrig-n-1\\xmrig",
+    "NVIDIA2": ".\\bin\\xmrig-n-2\\xmrig",
+    "NVIDIA3": ".\\bin\\xmrig-n-3\\xmrig",
     "minername": "xmrig",
-    "version": "6.7.0",
+    "version": "6.18.1",
     "optional": "No",
-    "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v5.0/xmrig-linux.tar.xz"
+    "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v4.0/xmrig-linux.tar.xz"
   },
-  "cc-verus": {
-    "name": "cc-verus",
+  "verus": {
+    "name": "verus",
     "type": "nvidia",
-    "NVIDIA1": ".\\bin\\cc-verus-1\\ccminer",
-    "NVIDIA2": ".\\bin\\cc-verus-2\\ccminer",
-    "NVIDIA3": ".\\bin\\cc-verus-3\\ccminer",
+    "NVIDIA1": ".\\bin\\verus-1\\ccminer",
+    "NVIDIA2": ".\\bin\\verus-2\\ccminer",
+    "NVIDIA3": ".\\bin\\verus-3\\ccminer",
     "minername": "ccminer",
     "version": "3.611",
     "optional": "No",
@@ -297,16 +297,16 @@
     "optional": "No",
     "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v4.0/cc-lyra2z330-linux.tar.gz"
   },
-  "nv-lolminer": {
-    "name": "nv-lolminer",
+  "lolminer-n": {
+    "name": "lolminer-n",
     "type": "nvidia",
-    "NVIDIA1": ".\\bin\\nv-lolminer-1\\lolMiner",
-    "NVIDIA2": ".\\bin\\nv-lolminer-2\\lolMiner",
-    "NVIDIA3": ".\\bin\\nv-lolminer-3\\lolMiner",
+    "NVIDIA1": ".\\bin\\lolminer-n-1\\lolMiner",
+    "NVIDIA2": ".\\bin\\lolminer-n-2\\lolMiner",
+    "NVIDIA3": ".\\bin\\lolminer-n-3\\lolMiner",
     "minername": "lolMiner",
-    "version": "1.16a",
-    "optional": "Yes",
-    "uri": "https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.16/lolMiner_v1.16a_Lin64.tar.gz"
+    "version": "1.61",
+    "optional": "No",
+    "uri": "https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.61/lolMiner_v1.61_Lin64.tar.gz"
   },
   "tt-miner": {
     "name": "tt-miner",
@@ -315,7 +315,7 @@
     "NVIDIA2": ".\\bin\\tt-miner-2\\TT-Miner",
     "NVIDIA3": ".\\bin\\tt-miner-3\\TT-Miner",
     "minername": "TT-Miner",
-    "version": "5.0.1",
+    "version": "6.2.0",
     "optional": "No",
     "uri": "https://tradeproject.de/download/Miner/TT-Miner.tar.xz"
   },
@@ -341,26 +341,59 @@
     "optional": "No",
     "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v4.0/SWARM-MINER-linux.tar.gz"
   },
-  "wildrig-nv": {
-    "name": "wildrig-nv",
+  "wildrig-n": {
+    "name": "wildrig-n",
     "type": "nvidia",
-    "NVIDIA1": ".\\bin\\wildrig-nv-1\\wildrig-multi",
-    "NVIDIA2": ".\\bin\\wildrig-nv-2\\wildrig-multi",
-    "NVIDIA3": ".\\bin\\wildrig-nv-3\\wildrig-multi",
+    "NVIDIA1": ".\\bin\\wildrig-n-1\\wildrig-multi",
+    "NVIDIA2": ".\\bin\\wildrig-n-2\\wildrig-multi",
+    "NVIDIA3": ".\\bin\\wildrig-n-3\\wildrig-multi",
     "minername": "wildrig-multi",
-    "version": "0.28.2",
+    "version": "0.41.9",
     "optional": "No",
-    "uri": "https://github.com/andru-kun/wildrig-multi/releases/download/0.28.2/wildrig-multi-linux-0.28.2.tar.xz"
-  },        
-  "nanominer-nv": {
-    "name": "nanominer-nv",
+    "uri": "https://github.com/andru-kun/wildrig-multi/releases/download/0.41.9/wildrig-multi-linux-0.41.9.tar.xz"
+  },
+  "nanominer-n": {
+    "name": "nanominer-n",
     "type": "nvidia",
-    "NVIDIA1": ".\\bin\\nanominer-nv-1\\nanominer",
-    "NVIDIA2": ".\\bin\\nanominer-nv-2\\nanominer",
-    "NVIDIA3": ".\\bin\\nanominer-nv-3\\nanominer",
+    "NVIDIA1": ".\\bin\\nanominer-n-1\\nanominer",
+    "NVIDIA2": ".\\bin\\nanominer-n-2\\nanominer",
+    "NVIDIA3": ".\\bin\\nanominer-n-3\\nanominer",
     "minername": "nanominer",
-    "version": "3.1.4",
+    "version": "3.7.4",
     "optional": "No",
-    "uri": "https://github.com/nanopool/nanominer/releases/download/v3.1.4/nanominer-linux-3.1.4-cuda11.tar.gz"
+    "uri": "https://github.com/nanopool/nanominer/releases/download/v3.7.4/nanominer-linux-3.7.4-cuda11.tar.gz"
+  },
+  "cdredge": {
+    "name": "cdredge",
+    "type": "nvidia",
+    "NVIDIA1": ".\\bin\\cdredge-1\\CryptoDredge",
+    "NVIDIA2": ".\\bin\\cdredge-2\\CryptoDredge",
+    "NVIDIA3": ".\\bin\\cdredge-3\\CryptoDredge",
+    "minername": "CryptoDredge",
+    "version": "0.27.0",
+    "optional": "No",
+    "uri": "https://github.com/cryptodredge/miner/releases/download/v0.27.0/cryptodredge_0.27.0_cuda_11.4_linux.tar.gz"
+  },
+  "cradiator": {
+    "name": "cradiator",
+    "type": "nvidia",
+    "NVIDIA1": ".\\bin\\cradiator-1\\ccminer",
+    "NVIDIA2": ".\\bin\\cradiator-2\\ccminer",
+    "NVIDIA3": ".\\bin\\cradiator-3\\ccminer",
+    "minername": "ccminer",
+    "version": "1.0.0",
+    "optional": "No",
+    "uri": "https://github.com/radifier/radiator/releases/download/v1.0.0-hiveos/radiator-1.0.0.tar.gz"
+  },
+  "srbmulti-n": {
+    "name": "srbmulti-n",
+    "type": "nvidia",
+    "NVIDIA1": ".\\bin\\srbmulti-n-1\\SRBMiner-MULTI",
+    "NVIDIA2": ".\\bin\\srbmulti-n-2\\SRBMiner-MULTI",
+    "NVIDIA3": ".\\bin\\srbmulti-n-3\\SRBMiner-MULTI",
+    "minername": "SRBMiner-MULTI",
+    "version": "2.7.4",
+    "optional": "No",
+    "uri": "https://github.com/doktor83/SRBMiner-Multi/releases/download/2.7.4/SRBMiner-Multi-2-7-4-Linux.tar.xz"
   }
 }
