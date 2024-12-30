@@ -42,7 +42,7 @@
     "minername": "PhoenixMiner",
     "version": "6.2c",
     "optional": "No",
-    "uri": "https://phoenixminer.info/downloads/PhoenixMiner_6.2c_Linux.tar.gz"
+    "uri": "https://objects.githubusercontent.com/github-production-release-asset-2e65be/432279954/35aaaa6c-1f99-4eb7-86ea-0e777a0a14ed?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241230%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241230T025007Z&X-Amz-Expires=300&X-Amz-Signature=100cae0b92b6ccb61024ab7350ccbb1e8a9e9c910573bdbbe6783c54c17d0180&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3DPhoenixMiner_6.2c_Linux.zip&response-content-type=application%2Foctet-stream"
   },
   "cc-sha3d": {
     "name": "cc-sha3d",
