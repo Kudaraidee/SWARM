@@ -890,6 +890,17 @@
       "comma seperated"
     ]
   },
+  "meraki": {
+    "alt_names": [
+      "meraki",
+      "progpow-telestai",
+      "progpow_telestai"
+    ],
+    "exclusions": [
+      "add pool or miner here",
+      "comma seperated"
+    ]
+  },
   "mike": {
     "alt_names": [
       "mike"
@@ -1066,17 +1077,6 @@
   "progpow": {
     "alt_names": [
       "progpow"
-    ],
-    "exclusions": [
-      "add pool or miner here",
-      "comma seperated"
-    ]
-  },
-  "progpow-telestai": {
-    "alt_names": [
-      "meraki",
-      "progpow-telestai",
-      "progpow_telestai"
     ],
     "exclusions": [
       "add pool or miner here",
