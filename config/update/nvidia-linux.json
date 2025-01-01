@@ -271,9 +271,9 @@
     "NVIDIA2": ".\\bin\\xmrig-n-2\\xmrig",
     "NVIDIA3": ".\\bin\\xmrig-n-3\\xmrig",
     "minername": "xmrig",
-    "version": "6.18.1",
+    "version": "6.22.2",
     "optional": "No",
-    "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v4.0/xmrig-linux.tar.xz"
+    "uri": "https://github.com/xmrig/xmrig/releases/download/v6.22.2/xmrig-6.22.2-linux-static-x64.tar.gz"
   },
   "verus": {
     "name": "verus",

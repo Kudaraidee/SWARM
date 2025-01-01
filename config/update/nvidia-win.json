@@ -271,9 +271,9 @@
     "NVIDIA2": ".\\bin\\xmrig-n-2\\xmrig.exe",
     "NVIDIA3": ".\\bin\\xmrig-n-3\\xmrig.exe",
     "minername": "xmrig.exe",
-    "version": "6.18.1",
+    "version": "6.22.2",
     "optional": "No",
-    "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v9.0/xmrig-windows.zip"
+    "uri": "https://github.com/xmrig/xmrig/releases/download/v6.22.2/xmrig-6.22.2-msvc-win64.zip"
   },
   "lolminer-n": {
     "name": "lolminer-n",
