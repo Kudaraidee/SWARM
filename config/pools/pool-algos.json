@@ -982,6 +982,15 @@
       "comma seperated"
     ]
   },
+  "nexapow": {
+    "alt_names": [
+      "nexapow"
+    ],
+    "exclusions": [
+      "add pool or miner here",
+      "comma seperated"
+    ]
+  },
   "ninja": {
     "alt_names": [
       "ninja"

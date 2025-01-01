@@ -272,7 +272,7 @@
     "NVIDIA3": ".\\bin\\xmrig-n-3\\xmrig",
     "minername": "xmrig",
     "version": "6.22.2",
-    "optional": "No",
+    "optional": "Yes",
     "uri": "https://github.com/xmrig/xmrig/releases/download/v6.22.2/xmrig-6.22.2-linux-static-x64.tar.gz"
   },
   "verus": {

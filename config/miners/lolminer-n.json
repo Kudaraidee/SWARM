@@ -13,10 +13,11 @@
             "equihash_125/4": "",
             "equihash_144/5": "--pers AUTO",
             "equihash_192/7": "--pers AUTO",
-            "equihash_210/9": "--pers AUTO",
+            "equihash_210/9": "",
             "etchash": "",
             "ethash": "",
             "ethashb3": "",
+            "nexapow": "",
             "sha512256d": ""
         },
         "difficulty": {
@@ -31,6 +32,7 @@
             "etchash": "",
             "ethash": "",
             "ethashb3": "",
+            "nexapow": "",
             "sha512256d": ""
         },
         "naming": {
@@ -45,6 +47,7 @@
             "etchash": "ETCHASH",
             "ethash": "ETHASH",
             "ethashb3": "ETHASHB3",
+            "nexapow": "NEXA",
             "sha512256d": "RADIANT"
         },
         "fee": {
@@ -59,6 +62,7 @@
             "etchash": 0.7,
             "ethash": 0.7,
             "ethashb3": 1,
+            "nexapow": 2,
             "sha512256d": 0.75
         }
     },
@@ -79,6 +83,7 @@
             "etchash": "",
             "ethash": "",
             "ethashb3": "",
+            "nexapow": "",
             "sha512256d": ""
         },
         "difficulty": {
@@ -93,6 +98,7 @@
             "etchash": "",
             "ethash": "",
             "ethashb3": "",
+            "nexapow": "",
             "sha512256d": ""
         },
         "naming": {
@@ -101,12 +107,13 @@
             "cuckarood29": "MWC-C29D",
             "cuckatoo31": "MWC-C31",
             "equihash_125/4": "ZEL",
-            "equihash_144/5": "AUTO144_5",
-            "equihash_192/7": "AUTO192_7",
+            "equihash_144/5": "EQUI144_5",
+            "equihash_192/7": "EQUI192_7",
             "equihash_210/9": "AION",
             "etchash": "ETCHASH",
             "ethash": "ETHASH",
             "ethashb3": "ETHASHB3",
+            "nexapow": "NEXA",
             "sha512256d": "RADIANT"
         },
         "fee": {
@@ -121,6 +128,7 @@
             "etchash": 0.7,
             "ethash": 0.7,
             "ethashb3": 1,
+            "nexapow": 2,
             "sha512256d": 0.75
         }
     },
@@ -141,6 +149,7 @@
             "etchash": "",
             "ethash": "",
             "ethashb3": "",
+            "nexapow": "",
             "sha512256d": ""
         },
         "difficulty": {
@@ -155,6 +164,7 @@
             "etchash": "",
             "ethash": "",
             "ethashb3": "",
+            "nexapow": "",
             "sha512256d": ""
         },
         "naming": {
@@ -163,12 +173,13 @@
             "cuckarood29": "MWC-C29D",
             "cuckatoo31": "MWC-C31",
             "equihash_125/4": "ZEL",
-            "equihash_144/5": "AUTO144_5",
-            "equihash_192/7": "AUTO192_7",
+            "equihash_144/5": "EQUI144_5",
+            "equihash_192/7": "EQUI192_7",
             "equihash_210/9": "AION",
             "etchash": "ETCHASH",
             "ethash": "ETHASH",
             "ethashb3": "ETHASHB3",
+            "nexapow": "NEXA",
             "sha512256d": "RADIANT"
         },
         "fee": {
@@ -183,6 +194,7 @@
             "etchash": 0.7,
             "ethash": 0.7,
             "ethashb3": 1,
+            "nexapow": 2,
             "sha512256d": 0.75
         }
     }
