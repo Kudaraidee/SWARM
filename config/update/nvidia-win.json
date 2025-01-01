@@ -349,7 +349,7 @@
     "NVIDIA3": ".\\bin\\cradiator-3\\ccminer.exe",
     "minername": "ccminer.exe",
     "version": "1.0.0",
-    "optional": "No",
+    "optional": "Yes",
     "uri": "https://github.com/xiaolin1579/radiator/releases/download/v1.0.0/Radiator1.0.0_cuda11.6_Win64.zip"
   },
   "srbmulti-n": {
