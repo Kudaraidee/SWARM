@@ -1197,6 +1197,15 @@
       "comma seperated"
     ]
   },
+  "sha256dt": {
+    "alt_names": [
+      "sha256dt"
+    ],
+    "exclusions": [
+      "add pool or miner here",
+      "comma seperated"
+    ]
+  },
   "sha256q": {
     "alt_names": [
       "sha256q"
