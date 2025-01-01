@@ -750,6 +750,15 @@
       "comma seperated"
     ]
   },
+  "karlsenhashv2": {
+    "alt_names": [
+      "karlsenhashv2"
+    ],
+    "exclusions": [
+      "add pool or miner here",
+      "comma seperated"
+    ]
+  },
   "kawpow": {
     "alt_names": [
       "kapow",
@@ -1181,7 +1190,8 @@
   },
   "sha512256d": {
     "alt_names": [
-      "sha512256d"
+      "sha512256d",
+      "sha512/256d"
     ],
     "exclusions": [
       "add pool or miner here",

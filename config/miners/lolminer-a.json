@@ -22,6 +22,7 @@
             "etchash": "",
             "ethash": "",
             "ethashb3": "",
+            "karlsenhashv2": "",
             "nexapow": "",
             "sha512256d": ""
         },
@@ -37,6 +38,7 @@
             "etchash": "",
             "ethash": "",
             "ethashb3": "",
+            "karlsenhashv2": "",
             "nexapow": "",
             "sha512256d": ""
         },
@@ -52,6 +54,7 @@
             "etchash": "ETCHASH",
             "ethash": "ETHASH",
             "ethashb3": "ETHASHB3",
+            "karlsenhashv2": "KARLSENV2",
             "nexapow": "NEXA",
             "sha512256d": "RADIANT"
         },
@@ -67,6 +70,7 @@
             "etchash": 0.7,
             "ethash": 0.7,
             "ethashb3": 1,
+            "karlsenhashv2": 1,
             "nexapow": 2,
             "kheavyhash": 0.75
         }
