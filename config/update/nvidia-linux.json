@@ -382,7 +382,7 @@
     "NVIDIA3": ".\\bin\\cradiator-3\\ccminer",
     "minername": "ccminer",
     "version": "1.0.0",
-    "optional": "No",
+    "optional": "Yes",
     "uri": "https://github.com/radifier/radiator/releases/download/v1.0.0-hiveos/radiator-1.0.0.tar.gz"
   },
   "srbmulti-n": {
