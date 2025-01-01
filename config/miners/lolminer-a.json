@@ -21,6 +21,7 @@
             "equihash_210/9": "--pers AUTO",
             "etchash": "",
             "ethash": "",
+            "ethashb3": "",
             "sha512256d": ""
         },
         "difficulty": {
@@ -34,6 +35,7 @@
             "equihash_210/9": "",
             "etchash": "",
             "ethash": "",
+            "ethashb3": "",
             "sha512256d": ""
         },
         "naming": {
@@ -47,6 +49,7 @@
             "equihash_210/9": "AION",
             "etchash": "ETCHASH",
             "ethash": "ETHASH",
+            "ethashb3": "ETHASHB3",
             "sha512256d": "RADIANT"
         },
         "fee": {
@@ -60,6 +63,7 @@
             "equihash_210/9": 1,
             "etchash": 0.7,
             "ethash": 0.7,
+            "ethashb3": 1,
             "kheavyhash": 0.75
         }
     }

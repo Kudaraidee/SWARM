@@ -593,6 +593,15 @@
       "comma seperated"
     ]
   },
+  "ethashb3": {
+    "alt_names": [
+      "ethashb3"
+    ],
+    "exclusions": [
+      "add pool or miner here",
+      "comma seperated"
+    ]
+  },
   "exosis": {
     "alt_names": [
       "exosis"
