@@ -10,13 +10,13 @@
             "cuckatoo32": "",
             "cuckarood29": "",
             "cuckatoo31": "",
-            "equihash_125/4": "--pers AUTO",
+            "equihash_125/4": "",
             "equihash_144/5": "--pers AUTO",
             "equihash_192/7": "--pers AUTO",
             "equihash_210/9": "--pers AUTO",
             "etchash": "",
             "ethash": "",
-            "kheavyhash": ""
+            "sha512256d": ""
         },
         "difficulty": {
             "cuckaroo29": "",
@@ -29,20 +29,20 @@
             "equihash_210/9": "",
             "etchash": "",
             "ethash": "",
-            "kheavyhash": ""
+            "sha512256d": ""
         },
         "naming": {
             "cuckaroo29": "GRIN-C29M",
             "cuckatoo32": "GRIN-C32",
             "cuckarood29": "MWC-C29D",
             "cuckatoo31": "MWC-C31",
-            "equihash_125/4": "ZEL",
+            "equihash_125/4": "FLUX",
             "equihash_144/5": "EQUI144_5",
             "equihash_192/7": "EQUI192_7",
             "equihash_210/9": "AION",
-            "etchash": "ETC",
-            "ethash": "ETH",
-            "kheavyhash": "KASPA"
+            "etchash": "ETCHASH",
+            "ethash": "ETHASH",
+            "sha512256d": "RADIANT"
         },
         "fee": {
             "cuckaroo29": 2,
@@ -55,7 +55,7 @@
             "equihash_210/9": 1,
             "etchash": 0.7,
             "ethash": 0.7,
-            "kheavyhash": 0.75
+            "sha512256d": 0.75
         }
     },
     "NVIDIA2": {
@@ -74,7 +74,7 @@
             "equihash_210/9": "",
             "etchash": "",
             "ethash": "",
-            "kheavyhash": ""
+            "sha512256d": ""
         },
         "difficulty": {
             "cuckaroo29": "",
@@ -87,7 +87,7 @@
             "equihash_210/9": "",
             "etchash": "",
             "ethash": "",
-            "kheavyhash": ""
+            "sha512256d": ""
         },
         "naming": {
             "cuckaroo29": "GRIN-C29M",
@@ -98,9 +98,9 @@
             "equihash_144/5": "AUTO144_5",
             "equihash_192/7": "AUTO192_7",
             "equihash_210/9": "AION",
-            "etchash": "ETC",
-            "ethash": "ETH",
-            "kheavyhash": "KASPA"
+            "etchash": "ETCHASH",
+            "ethash": "ETHASH",
+            "sha512256d": "RADIANT"
         },
         "fee": {
             "cuckaroo29": 2,
@@ -113,7 +113,7 @@
             "equihash_210/9": 1,
             "etchash": 0.7,
             "ethash": 0.7,
-            "kheavyhash": 0.75
+            "sha512256d": 0.75
         }
     },
     "NVIDIA3": {
@@ -132,7 +132,7 @@
             "equihash_210/9": "",
             "etchash": "",
             "ethash": "",
-            "kheavyhash": ""
+            "sha512256d": ""
         },
         "difficulty": {
             "cuckaroo29": "",
@@ -145,7 +145,7 @@
             "equihash_210/9": "",
             "etchash": "",
             "ethash": "",
-            "kheavyhash": ""
+            "sha512256d": ""
         },
         "naming": {
             "cuckaroo29": "GRIN-C29M",
@@ -156,9 +156,9 @@
             "equihash_144/5": "AUTO144_5",
             "equihash_192/7": "AUTO192_7",
             "equihash_210/9": "AION",
-            "etchash": "ETC",
-            "ethash": "ETH",
-            "kheavyhash": "KASPA"
+            "etchash": "ETCHASH",
+            "ethash": "ETHASH",
+            "sha512256d": "RADIANT"
         },
         "fee": {
             "cuckaroo29": 2,
@@ -171,7 +171,7 @@
             "equihash_210/9": 1,
             "etchash": 0.7,
             "ethash": 0.7,
-            "kheavyhash": 0.75
+            "sha512256d": 0.75
         }
     }
 }
