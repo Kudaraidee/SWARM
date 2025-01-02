@@ -7,28 +7,36 @@
             "cuckaroo29": "",
             "cuckaroo29d": "",
             "kawpow": "",
+            "karlsenhashv2": "",
             "ubqhash": "",
+            "ethash": "",
             "etchash": ""
         },
         "difficulty": {
             "cuckaroo29": "",
             "cuckaroo29d": "",
             "kawpow": "",
+            "karlsenhashv2": "",
             "ubqhash": "",
+            "ethash": "",
             "etchash": ""
         },
         "naming": {
             "cuckaroo29": "cuckaroo29",
             "cuckaroo29d": "cuckaroo29d",
             "kawpow": "kawpow",
+            "karlsenhashv2": "karlsenhashv2",
             "ubqhash": "ubqhash",
+            "ethash": "ethash",
             "etchash": "etchash"
         },
         "fee": {
             "cuckaroo29": 2,
             "cuckaroo29d": 2,
             "kawpow": 1,
+            "karlsenhashv2": 1,
             "ubqhash": 1,
+            "ethash": "",
             "etchash": 1
         }
     },

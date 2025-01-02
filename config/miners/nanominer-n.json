@@ -5,6 +5,7 @@
         "prestart": [],
         "commands": {
             "kawpow": "",
+            "karlsenhashv2": "",
             "ubqhash": "",
             "ethash": "",
             "etchash": "",
@@ -14,6 +15,7 @@
         },
         "difficulty": {
             "kawpow": "",
+            "karlsenhashv2": "",
             "ubqhash": "",
             "ethash": "",
             "etchash": "",
@@ -23,6 +25,7 @@
         },
         "naming": {
             "kawpow": "kawpow",
+            "karlsenhashv2": "karlsenhashv2",
             "ubqhash": "ubqhash",
             "ethash": "ethash",
             "etchash": "etchash",
@@ -32,6 +35,7 @@
         },
         "fee": {
             "kawpow": 1,
+            "karlsenhashv2": 1,
             "ubqhash": 1,
             "ethash": 1,
             "etchash": 1,
@@ -46,6 +50,7 @@
         "prestart": [],
         "commands": {
             "kawpow": "",
+            "karlsenhashv2": "",
             "ubqhash": "",
             "ethash": "",
             "etchash": "",
@@ -55,6 +60,7 @@
         },
         "difficulty": {
             "kawpow": "",
+            "karlsenhashv2": "",
             "ubqhash": "",
             "ethash": "",
             "etchash": "",
@@ -64,6 +70,7 @@
         },
         "naming": {
             "kawpow": "kawpow",
+            "karlsenhashv2": "karlsenhashv2",
             "ubqhash": "ubqhash",
             "ethash": "ethash",
             "etchash": "etchash",
@@ -73,6 +80,7 @@
         },
         "fee": {
             "kawpow": 1,
+            "karlsenhashv2": 1,
             "ubqhash": 1,
             "ethash": 1,
             "etchash": 1,
@@ -87,6 +95,7 @@
         "prestart": [],
         "commands": {
             "kawpow": "",
+            "karlsenhashv2": "",
             "ubqhash": "",
             "ethash": "",
             "etchash": "",
@@ -96,6 +105,7 @@
         },
         "difficulty": {
             "kawpow": "",
+            "karlsenhashv2": "",
             "ubqhash": "",
             "ethash": "",
             "etchash": "",
@@ -105,6 +115,7 @@
         },
         "naming": {
             "kawpow": "kawpow",
+            "karlsenhashv2": "karlsenhashv2",
             "ubqhash": "ubqhash",
             "ethash": "ethash",
             "etchash": "etchash",
@@ -114,6 +125,7 @@
         },
         "fee": {
             "kawpow": 1,
+            "karlsenhashv2": 1,
             "ubqhash": 1,
             "ethash": 1,
             "etchash": 1,
