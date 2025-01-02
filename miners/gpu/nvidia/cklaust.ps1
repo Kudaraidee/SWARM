@@ -5,11 +5,11 @@ $(vars).NVIDIATypes | ForEach-Object {
     $ConfigType = $_; $Num = $ConfigType -replace "NVIDIA", ""
 
     ##Miner Path Information
-    if ($(vars).nvidia.cklaust.$ConfigType) { $Path = "$($(vars).nvidia.cklaust.$ConfigType)" }
+    if ($(vars).nvidia.'cklaust'.$ConfigType) { $Path = "$($(vars).nvidia.'cklaust'.$ConfigType)" }
     else { $Path = "None" }
-    if ($(vars).nvidia.cklaust.uri) { $Uri = "$($(vars).nvidia.cklaust.uri)" }
+    if ($(vars).nvidia.'cklaust'.uri) { $Uri = "$($(vars).nvidia.'cklaust'.uri)" }
     else { $Uri = "None" }
-    if ($(vars).nvidia.cklaust.minername) { $MinerName = "$($(vars).nvidia.cklaust.minername)" }
+    if ($(vars).nvidia.'cklaust'.minername) { $MinerName = "$($(vars).nvidia.'cklaust'.minername)" }
     else { $MinerName = "None" }
 
     $User = "User$Num"; $Pass = "Pass$Num"; $Name = "cklaust-$Num"; $Port = "5900$Num";
@@ -29,7 +29,7 @@ $(vars).NVIDIATypes | ForEach-Object {
 
     ##Get Configuration File
     ##This is located in config\miners
-    $MinerConfig = $Global:config.miners.cklaust
+    $MinerConfig = $Global:config.miners.'cklaust'
 
     ##Export would be /path/to/[SWARMVERSION]/build/export##
     $ExportDir = "/lib/x86_x64-linux-gnu"
@@ -76,7 +76,7 @@ $(vars).NVIDIATypes | ForEach-Object {
                     Path       = $Path
                     Devices    = $Devices
                     Stratum    = "$($_.Protocol)://$($_.Pool_Host):$($_.Port)"
-                    Version    = "$($(vars).nvidia.cklaust.version)"
+                    Version    = "$($(vars).nvidia.'cklaust'.version)"
                     DeviceCall = "ccminer"
                     Arguments  = "-a $($MinerConfig.$ConfigType.naming.$($_.Algorithm)) -o stratum+tcp://$($_.Pool_Host):$($_.Port) -b 0.0.0.0:$Port -u $($_.$User) -p $($_.$Pass)$($Diff) $($MinerConfig.$ConfigType.commands.$($_.Algorithm))"
                     HashRates  = [Decimal]$Stat.Hour
