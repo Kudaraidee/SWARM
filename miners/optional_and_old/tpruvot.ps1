@@ -5,19 +5,21 @@ $(vars).NVIDIATypes | ForEach-Object {
     $ConfigType = $_; $Num = $ConfigType -replace "NVIDIA", ""
 
     ##Miner Path Information
-    if ($(vars).nvidia.tpruvot.$ConfigType) { $Path = "$($(vars).nvidia.tpruvot.$ConfigType)" }
+    if ($(vars).nvidia.'tpruvot'.$ConfigType) { $Path = "$($(vars).nvidia.'tpruvot'.$ConfigType)" }
     else { $Path = "None" }
-    if ($(vars).nvidia.tpruvot.uri) { $Uri = "$($(vars).nvidia.tpruvot.uri)" }
+    if ($(vars).nvidia.'tpruvot'.uri) { $Uri = "$($(vars).nvidia.'tpruvot'.uri)" }
     else { $Uri = "None" }
-    if ($(vars).nvidia.tpruvot.minername) { $MinerName = "$($(vars).nvidia.tpruvot.minername)" }
+    if ($(vars).nvidia.'tpruvot'.minername) { $MinerName = "$($(vars).nvidia.'tpruvot'.minername)" }
     else { $MinerName = "None" }
 
     $User = "User$Num"; $Pass = "Pass$Num"; $Name = "tpruvot-$Num"; $Port = "4900$Num"
 
+    $MinerAlgos = @();
+
     Switch ($Num) {
-        1 { $Get_Devices = $(vars).NVIDIADevices1; $Rig = $(arg).RigName1 }
-        2 { $Get_Devices = $(vars).NVIDIADevices2; $Rig = $(arg).RigName2 }
-        3 { $Get_Devices = $(vars).NVIDIADevices3; $Rig = $(arg).RigName3 }
+        1 { $Get_Devices = $(vars).NVIDIADevices1; $Rig = $(arg).RigName1; $MinerAlgos = $(vars).GPUAlgorithm1 }
+        2 { $Get_Devices = $(vars).NVIDIADevices2; $Rig = $(arg).RigName2;  $MinerAlgos = $(vars).GPUAlgorithm2 }
+        3 { $Get_Devices = $(vars).NVIDIADevices3; $Rig = $(arg).RigName3;  $MinerAlgos = $(vars).GPUAlgorithm3 }
     }
 
     ##Log Directory
@@ -29,16 +31,15 @@ $(vars).NVIDIATypes | ForEach-Object {
 
     ##Get Configuration File
     ##This is located in config\miners
-    $MinerConfig = $Global:config.miners.tpruvot
+    $MinerConfig = $Global:config.miners.'tpruvot'
 
     ##Export would be /path/to/[SWARMVERSION]/build/export##
-    $ExportDir = "/usr/local/swarm/lib64"
+    $ExportDir = "/lib/x86_x64-linux-gnu"
     $Miner_Dir = Join-Path ($(vars).dir) ((Split-Path $Path).replace(".", ""))
 
     ##Prestart actions before miner launch
     ##This can be edit in miner.json
     $Prestart = @()
-    if ($IsLinux) { $Prestart += "export LD_PRELOAD=/usr/local/swarm/lib64/libcurl.so.3" }
     $PreStart += "export LD_LIBRARY_PATH=$ExportDir`:$Miner_Dir"
     if ($IsLinux) { $Prestart += "export DISPLAY=:0" }
     $MinerConfig.$ConfigType.prestart | ForEach-Object { $Prestart += "$($_)" }
@@ -63,7 +64,13 @@ $(vars).NVIDIATypes | ForEach-Object {
             if ($(arg).Rej_Factor -eq "Yes" -and $Stat.Rejections -gt 0 -and $Stat.Rejection_Periods -ge 3) { $HashStat = $Stat.Hour * (1 - ($Stat.Rejections * 0.01)) }
             else { $HashStat = $Stat.Hour }
             $Pools | Where-Object Algorithm -eq $MinerAlgo | ForEach-Object {
-                if ($MinerConfig.$ConfigType.difficulty.$($_.Algorithm)) { $Diff = ",d=$($MinerConfig.$ConfigType.difficulty.$($_.Algorithm))" }else { $Diff = "" }
+                $Diff = ""
+                if ($MinerConfig.$ConfigType.difficulty.$($_.Algorithm)) { 
+                    switch($_.Name) {
+                        "zergpool" { $Diff = ",sd=$($MinerConfig.$ConfigType.difficulty.$($_.Algorithm))" }
+                        default { $Diff = ",d=$($MinerConfig.$ConfigType.difficulty.$($_.Algorithm))" }
+                    }
+                }
                 [PSCustomObject]@{
                     MName      = $Name
                     Coin       = $(vars).Coins
@@ -76,7 +83,7 @@ $(vars).NVIDIATypes | ForEach-Object {
                     Path       = $Path
                     Devices    = $Devices
                     Stratum    = "$($_.Protocol)://$($_.Pool_Host):$($_.Port)"
-                    Version    = "$($(vars).nvidia.tpruvot.version)"
+                    Version    = "$($(vars).nvidia.'tpruvot'.version)"
                     DeviceCall = "ccminer"
                     Arguments  = "-a $($MinerConfig.$ConfigType.naming.$($_.Algorithm)) -o stratum+tcp://$($_.Pool_Host):$($_.Port) -b 0.0.0.0:$Port -u $($_.$User) -p $($_.$Pass)$($Diff) $($MinerConfig.$ConfigType.commands.$($_.Algorithm))"
                     HashRates  = [Decimal]$Stat.Hour
