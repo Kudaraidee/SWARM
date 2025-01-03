@@ -5,6 +5,7 @@
         "delay": "1",
         "prestart": [],
         "commands": {
+            "allium": "",
             "exosis": "",
             "keccakc": "",
             "lyra2rev2": "",
@@ -13,6 +14,7 @@
             "skein2": ""
         },
         "difficulty": {
+            "allium": "",
             "exosis": "",
             "keccakc": "",
             "lyra2rev2": "",
@@ -21,6 +23,7 @@
             "skein2": ""
         },
         "naming": {
+            "allium": "allium",
             "exosis": "exosis",
             "keccakc": "keccakc",
             "lyra2rev2": "lyra2rev2",
@@ -29,6 +32,7 @@
             "skein2": "skein2"
         },
         "fee": {
+            "allium": 0,
             "exosis": 0,
             "keccakc": 0,
             "lyra2rev2": 0,
