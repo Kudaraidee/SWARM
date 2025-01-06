@@ -6,23 +6,19 @@
         "prestart": [],
         "commands": {
             "lyra2rev3": "",
-            "neoscrypt": "",
-            "neoscrypt-xaya": ""
+            "neoscrypt": ""
         },
         "difficulty": {
             "lyra2rev3": "",
-            "neoscrypt": "",
-            "neoscrypt-xaya": ""
+            "neoscrypt": ""
         },
         "naming": {
             "lyra2rev3": "lyra2rev3",
-            "neoscrypt": "neoscrypt",
-            "neoscrypt-xaya": "neoscrypt-xaya"
+            "neoscrypt": "neoscrypt"
         },
         "fee": {
             "lyra2rev3": 0,
             "neoscrypt": 0,
-            "neoscrypt-xaya": 0
         }
     },
     "NVIDIA2": {
@@ -31,23 +27,19 @@
         "prestart": [],
         "commands": {
             "lyra2rev3": "",
-            "neoscrypt": "",
-            "neoscrypt-xaya": ""
+            "neoscrypt": ""
         },
         "difficulty": {
             "lyra2rev3": "",
-            "neoscrypt": "",
-            "neoscrypt-xaya": ""
+            "neoscrypt": ""
         },
         "naming": {
             "lyra2rev3": "lyra2rev3",
-            "neoscrypt": "neoscrypt",
-            "neoscrypt-xaya": "neoscrypt-xaya"
+            "neoscrypt": "neoscrypt"
         },
         "fee": {
             "lyra2rev3": 0,
-            "neoscrypt": 0,
-            "neoscrypt-xaya": 0
+            "neoscrypt": 0
         }
     },
     "NVIDIA3": {
@@ -56,23 +48,19 @@
         "prestart": [],
         "commands": {
             "lyra2rev3": "",
-            "neoscrypt": "",
-            "neoscrypt-xaya": ""
+            "neoscrypt": ""
         },
         "difficulty": {
             "lyra2rev3": "",
-            "neoscrypt": "",
-            "neoscrypt-xaya": ""
+            "neoscrypt": ""
         },
         "naming": {
             "lyra2rev3": "lyra2rev3",
-            "neoscrypt": "neoscrypt",
-            "neoscrypt-xaya": "neoscrypt-xaya"
+            "neoscrypt": "neoscrypt"
         },
         "fee": {
             "lyra2rev3": 0,
-            "neoscrypt": 0,
-            "neoscrypt-xaya": 0
+            "neoscrypt": 0
         }
     }
 }
