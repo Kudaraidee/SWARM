@@ -374,6 +374,17 @@
     "optional": "No",
     "uri": "https://github.com/cryptodredge/miner/releases/download/v0.27.0/cryptodredge_0.27.0_cuda_11.4_linux.tar.gz"
   },
+  "cdredge25": {
+    "name": "cdredge",
+    "type": "nvidia",
+    "NVIDIA1": ".\\bin\\cdredge-1\\CryptoDredge",
+    "NVIDIA2": ".\\bin\\cdredge-2\\CryptoDredge",
+    "NVIDIA3": ".\\bin\\cdredge-3\\CryptoDredge",
+    "minername": "CryptoDredge",
+    "version": "0.25.1",
+    "optional": "No",
+    "uri": "https://github.com/RainbowMiner/miner-binaries/releases/download/v0.25.1-cryptodredge/CryptoDredge_0.25.1_cuda_10.2_linux.tar.gz"
+  },
   "cradiator": {
     "name": "cradiator",
     "type": "nvidia",
