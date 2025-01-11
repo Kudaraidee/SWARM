@@ -3,13 +3,14 @@
 $(vars).NVIDIATypes | ForEach-Object {
 
     $ConfigType = $_; $Num = $ConfigType -replace "NVIDIA", ""
+    $CName = "cradiator"
 
     ##Miner Path Information
-    if ($(vars).nvidia.'cradiator'.$ConfigType) { $Path = "$($(vars).nvidia.'cradiator'.$ConfigType)" }
+    if ($(vars).nvidia.$CName.$ConfigType) { $Path = "$($(vars).nvidia.$CName.$ConfigType)" }
     else { $Path = "None" }
-    if ($(vars).nvidia.'cradiator'.uri) { $Uri = "$($(vars).nvidia.'cradiator'.uri)" }
+    if ($(vars).nvidia.$CName.uri) { $Uri = "$($(vars).nvidia.$CName.uri)" }
     else { $Uri = "None" }
-    if ($(vars).nvidia.'cradiator'.minername) { $MinerName = "$($(vars).nvidia.'cradiator'.minername)" }
+    if ($(vars).nvidia.$CName.minername) { $MinerName = "$($(vars).nvidia.$CName.minername)" }
     else { $MinerName = "None" }
 
     $User = "User$Num"; $Pass = "Pass$Num"; $Name = "cradiator-$Num"; $Port = "5600$Num";
@@ -31,16 +32,15 @@ $(vars).NVIDIATypes | ForEach-Object {
 
     ##Get Configuration File
     ##This is located in config\miners
-    $MinerConfig = $Global:config.miners.'cradiator'
+    $MinerConfig = $Global:config.miners.$CName
 
     ##Export would be /path/to/[SWARMVERSION]/build/export##
-    $ExportDir = "/usr/local/swarm/lib64"
+    $ExportDir = "/lib/x86_x64-linux-gnu"
     $Miner_Dir = Join-Path ($(vars).dir) ((Split-Path $Path).replace(".", ""))
 
     ##Prestart actions before miner launch
     ##This can be edit in miner.json
     $Prestart = @()
-    if ($IsLinux) { $Prestart += "export LD_PRELOAD=/usr/local/swarm/lib64/libcurl.so.4" }
     $PreStart += "export LD_LIBRARY_PATH=$ExportDir`:$Miner_Dir"
     if ($IsLinux) { $Prestart += "export DISPLAY=:0" }
     $MinerConfig.$ConfigType.prestart | ForEach-Object { $Prestart += "$($_)" }
@@ -84,7 +84,7 @@ $(vars).NVIDIATypes | ForEach-Object {
                     Path       = $Path
                     Devices    = $Devices
                     Stratum    = "$($_.Protocol)://$($_.Pool_Host):$($_.Port)"
-                    Version    = "$($(vars).nvidia.'cradiator'.version)"
+                    Version    = "$($(vars).nvidia.$CName.version)"
                     DeviceCall = "ccminer"
                     Arguments  = "-a $($MinerConfig.$ConfigType.naming.$($_.Algorithm)) -o stratum+tcp://$($_.Pool_Host):$($_.Port) -b 0.0.0.0:$Port -u $($_.$User) -p $($_.$Pass) $($MinerConfig.$ConfigType.commands.$($_.Algorithm))"
                     HashRates  = [Decimal]$Stat.Hour
