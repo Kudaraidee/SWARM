@@ -375,11 +375,11 @@
     "uri": "https://github.com/cryptodredge/miner/releases/download/v0.27.0/cryptodredge_0.27.0_cuda_11.4_linux.tar.gz"
   },
   "cdredge25": {
-    "name": "cdredge",
+    "name": "cdredge25",
     "type": "nvidia",
-    "NVIDIA1": ".\\bin\\cdredge-1\\CryptoDredge",
-    "NVIDIA2": ".\\bin\\cdredge-2\\CryptoDredge",
-    "NVIDIA3": ".\\bin\\cdredge-3\\CryptoDredge",
+    "NVIDIA1": ".\\bin\\cdredge25-1\\CryptoDredge",
+    "NVIDIA2": ".\\bin\\cdredge25-2\\CryptoDredge",
+    "NVIDIA3": ".\\bin\\cdredge25-3\\CryptoDredge",
     "minername": "CryptoDredge",
     "version": "0.25.1",
     "optional": "No",
