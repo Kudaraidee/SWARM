@@ -51,7 +51,7 @@ $(vars).NVIDIATypes | ForEach-Object {
     $MinerConfig = $Global:config.miners.$ref
     
     ##Export would be /path/to/[SWARMVERSION]/build/export##
-    $ExportDir = "/usr/local/swarm/lib64"
+    $ExportDir = "/lib/x86_64-linux-gnu"
     $Miner_Dir = Join-Path ($(vars).dir) ((Split-Path $Path).replace(".", ""))
 
     ##Prestart actions before miner launch
