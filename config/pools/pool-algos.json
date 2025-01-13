@@ -1048,7 +1048,8 @@
   },
   "phi": {
     "alt_names": [
-      "phi"
+      "phi",
+	  "phi1612"
     ],
     "exclusions": [
       "add pool or miner here",
