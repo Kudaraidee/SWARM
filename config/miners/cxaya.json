@@ -4,16 +4,28 @@
         "delay": "1",
         "prestart": [],
         "commands": {
-            "neoscrypt-xaya": ""
+            "allium": "",
+            "keccakc": "",
+            "neoscrypt-xaya": "",
+            "phi": ""
         },
         "difficulty": {
-            "neoscrypt-xaya": ""
+            "allium": "",
+            "keccakc": "",
+            "neoscrypt-xaya": "",
+            "phi": ""
         },
         "naming": {
-            "neoscrypt-xaya": "neoscrypt-xaya"
+            "allium": "allium",
+            "keccakc": "keccakc",
+            "neoscrypt-xaya": "neoscrypt-xaya",
+            "phi": "phi"
         },
         "fee": {
-            "neoscrypt-xaya": 0
+            "allium": 0,
+            "keccakc": 0,
+            "neoscrypt-xaya": 0,
+            "phi": 0
         }
     },
     "NVIDIA2": {
@@ -21,16 +33,28 @@
         "delay": "1",
         "prestart": [],
         "commands": {
-            "neoscrypt-xaya": ""
+            "allium": "",
+            "keccakc": "",
+            "neoscrypt-xaya": "",
+            "phi": ""
         },
         "difficulty": {
-            "neoscrypt-xaya": ""
+            "allium": "",
+            "keccakc": "",
+            "neoscrypt-xaya": "",
+            "phi": ""
         },
         "naming": {
-            "neoscrypt-xaya": "neoscrypt-xaya"
+            "allium": "allium",
+            "keccakc": "keccakc",
+            "neoscrypt-xaya": "neoscrypt-xaya",
+            "phi": "phi"
         },
         "fee": {
-            "neoscrypt-xaya": 0
+            "allium": 0,
+            "keccakc": 0,
+            "neoscrypt-xaya": 0,
+            "phi": 0
         }
     },
     "NVIDIA3": {
@@ -38,17 +62,29 @@
         "delay": "1",
         "prestart": [],
         "commands": {
-            "neoscrypt-xaya": ""
+            "allium": "",
+            "keccakc": "",
+            "neoscrypt-xaya": "",
+            "phi": ""
         },
         "difficulty": {
-            "neoscrypt-xaya": ""
+            "allium": "",
+            "keccakc": "",
+            "neoscrypt-xaya": "",
+            "phi": ""
         },
         "naming": {
-            "neoscrypt-xaya": "neoscrypt-xaya"
+            "allium": "allium",
+            "keccakc": "keccakc",
+            "neoscrypt-xaya": "neoscrypt-xaya",
+            "phi": "phi"
         },
         "fee": {
-            "neoscrypt-xaya": 0
-        }   
+            "allium": 0,
+            "keccakc": 0,
+            "neoscrypt-xaya": 0,
+            "phi": 0
+        }
     },
     "name": "cxaya"
 }
