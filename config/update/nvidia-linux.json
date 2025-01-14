@@ -162,7 +162,7 @@
     "NVIDIA3": ".\\bin\\tpruvot-3\\ccminer",
     "minername": "ccminer",
     "version": "2.3.1",
-    "optional": "No",
+    "optional": "Yes",
     "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v4.0/tpruvot-linux-10.tar.gz"
   },
   "cc-rfv2": {
@@ -382,7 +382,7 @@
     "NVIDIA3": ".\\bin\\cdredge25-3\\CryptoDredge",
     "minername": "CryptoDredge",
     "version": "0.25.1",
-    "optional": "No",
+    "optional": "Yes",
     "uri": "https://github.com/RainbowMiner/miner-binaries/releases/download/v0.25.1-cryptodredge/CryptoDredge_0.25.1_cuda_10.2_linux.tar.gz"
   },
   "cradiator": {
