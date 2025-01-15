@@ -1,24 +1,11 @@
-<#
-SWARM is open-source software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-SWARM is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#>
-
 . .\build\powershell\global\modules.ps1
-
+ 
 if ($Name -in $(arg).PoolName) {
     $Pool_Request = [PSCustomObject]@{ } 
 
     $X = ""
     if ($(arg).xnsub -eq "Yes") { $X = "#xnsub" }
-
+ 
     try { $Pool_Request = Invoke-RestMethod "https://miningpoolfun.ddns.net/api/status" -UseBasicParsing -TimeoutSec 10 -ErrorAction Stop } 
     catch { return "WARNING: SWARM contacted ($Name) but there was no response." }
  
@@ -43,7 +30,7 @@ if ($Name -in $(arg).PoolName) {
         $_.Name = $Pipe_Algos.PSObject.Properties.Name | Where-Object { $N -in $Pipe_Algos.$_.alt_names };
         if ($_.Name) { if ($_.Name -in $Algo_List -and $Pipe_Name -notin $Pipe_Algos.$($_.Name).exclusions -and $_.Name -notin $Pipe_Hammer) { return $_ } }
     } -ThrottleLimit $(arg).Throttle
-  
+
     ## These are modified, then returned back to the original
     ## value below. This is so that threading can be done.
     $DivisorTable = $Global:Config.vars.DivisorTable
@@ -51,7 +38,7 @@ if ($Name -in $(arg).PoolName) {
     $Hashrate_Table = $Global:Config.vars.Pool_HashRates
     $Get_Params = $Global:Config.params
     $Get_Wallets = $Global:Wallets
-
+      
     Switch ($(arg).Location) {
         "ASIA" { $Region = "asia" }
         default { $Region = "asia" }
@@ -76,7 +63,7 @@ if ($Name -in $(arg).PoolName) {
         $Hashrate = $_.hashrate
         $Estimate = $_.estimate_last24h
         if ($Get_Path) { $Estimate = $_.estimate_current }
-    
+
         $new_estimate = [Convert]::ToDecimal($Estimate)
         $current = [Convert]::ToDecimal($new_estimate / $Divisor * (1 - ($_.fees / 100)))
         $new_actual = [Convert]::ToDecimal($_.actual_last24h)
@@ -85,7 +72,7 @@ if ($Name -in $(arg).PoolName) {
         $Stat = [Pool_Stat]::New($StatName, $current, [Convert]::ToDecimal($Hashrate), $actual, $false)
 
         if (-not $H_Table.$($_.Name)) {
-            $H_Table.Add("$($_.Name)", @{ })
+            $H_Table.Add("$($_.Name)", @{})
         }
         elseif (-not $H_Table.$($_.Name).$P_Name) {
             $H_Table.$($_.Name).Add("$P_Name", @{
@@ -125,6 +112,31 @@ if ($Name -in $(arg).PoolName) {
         $User2 = $A_Wallets.Wallet2.$($Params.Passwordcurrency2).address
         $Pass3 = $A_Wallets.Wallet3.Keys
         $User3 = $A_Wallets.Wallet3.$($Params.Passwordcurrency3).address
+                
+        if ($A_Wallets.AltWallet1.keys) {
+            $A_Wallets.AltWallet1.Keys | ForEach-Object {
+                if ($A_Wallets.AltWallet1.$_.Pools -contains $P_Name) {
+                    $Pass1 = $_;
+                    $User1 = $A_Wallets.AltWallet1.$_.address;
+                }
+            }
+        }
+        if ($A_Wallets.AltWallet2.keys) {
+            $A_Wallets.AltWallet2.Keys | ForEach-Object {
+                if ($A_Wallets.AltWallet2.$_.Pools -contains $P_Name) {
+                    $Pass2 = $_;
+                    $User2 = $A_Wallets.AltWallet2.$_.address;
+                }
+            }
+        }
+        if ($A_Wallets.AltWallet3.keys) {
+            $A_Wallets.AltWallet3.Keys | ForEach-Object {
+                if ($A_Wallets.AltWallet3.$_.Pools -contains $P_Name) {
+                    $Pass3 = $_;
+                    $User3 = $A_Wallets.AltWallet3.$_.address;
+                }
+            }
+        }
 
         if ($Hashrate -gt 0) {
             [Pool]::New(
