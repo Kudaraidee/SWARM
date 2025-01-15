@@ -1,0 +1,162 @@
+{
+    "name": "t-rex19",
+    "NVIDIA1": {
+        "name": "NVIDIA1",
+        "delay": "1",
+        "prestart": [],
+        "commands": {
+            "hmq1725": "",
+            "balloon": "",
+            "megabtx": "",
+            "phi": "",
+            "x16r": "",
+            "x16rv2": "",
+            "x16rt": "",
+            "x16s": "",
+            "x17": "",
+            "x21s": ""
+        },
+        "difficulty": {
+            "hmq1725": "",
+            "balloon": "",
+            "megabtx": "",
+            "phi": "",
+            "x16r": "",
+            "x16rv2": "",
+            "x16rt": "",
+            "x16s": "",
+            "x17": "",
+            "x21s": ""
+        },
+        "naming": {
+            "hmq1725": "hmq1725",
+            "balloon": "balloon",
+            "megabtx": "megabtx",
+            "phi": "phi",
+            "x16r": "x16r",
+            "x16rv2": "x16rv2",
+            "x16rt": "x16rt",
+            "x16s": "x16s",
+            "x17": "x17",
+            "x21s": "x21s"
+        },
+        "fee": {
+            "hmq1725": 1,
+            "balloon": 1,
+            "megabtx": 1,
+            "phi": 1,
+            "x16r": 1,
+            "x16rv2": 1,
+            "x16rt": 1,
+            "x16s": 1,
+            "x17": 1,
+            "x21s": 1
+        }
+    },
+    "NVIDIA2": {
+        "name": "NVIDIA2",
+        "delay": "1",
+        "prestart": [],
+        "commands": {
+            "hmq1725": "",
+            "balloon": "",
+            "megabtx": "",
+            "phi": "",
+            "x16r": "",
+            "x16rv2": "",
+            "x16rt": "",
+            "x16s": "",
+            "x17": "",
+            "x21s": ""
+        },
+        "difficulty": {
+            "hmq1725": "",
+            "balloon": "",
+            "megabtx": "",
+            "phi": "",
+            "x16r": "",
+            "x16rv2": "",
+            "x16rt": "",
+            "x16s": "",
+            "x17": "",
+            "x21s": ""
+        },
+        "naming": {
+            "hmq1725": "hmq1725",
+            "balloon": "balloon",
+            "megabtx": "megabtx",
+            "phi": "phi",
+            "x16r": "x16r",
+            "x16rv2": "x16rv2",
+            "x16rt": "x16rt",
+            "x16s": "x16s",
+            "x17": "x17",
+            "x21s": "x21s"
+        },
+        "fee": {
+            "hmq1725": 1,
+            "balloon": 1,
+            "megabtx": 1,
+            "phi": 1,
+            "x16r": 1,
+            "x16rv2": 1,
+            "x16rt": 1,
+            "x16s": 1,
+            "x17": 1,
+            "x21s": 1
+        }
+    },
+    "NVIDIA3": {
+        "name": "NVIDIA3",
+        "delay": "1",
+        "prestart": [],
+        "commands": {
+            "hmq1725": "",
+            "balloon": "",
+            "megabtx": "",
+            "phi": "",
+            "x16r": "",
+            "x16rv2": "",
+            "x16rt": "",
+            "x16s": "",
+            "x17": "",
+            "x21s": ""
+        },
+        "difficulty": {
+            "hmq1725": "",
+            "balloon": "",
+            "megabtx": "",
+            "phi": "",
+            "x16r": "",
+            "x16rv2": "",
+            "x16rt": "",
+            "x16s": "",
+            "x17": "",
+            "x21s": ""
+        },
+        "naming": {
+            "hmq1725": "hmq1725",
+            "balloon": "balloon",
+            "megabtx": "megabtx",
+            "phi": "phi",
+            "x16r": "x16r",
+            "x16rv2": "x16rv2",
+            "x16rt": "x16rt",
+            "x16s": "x16s",
+            "x17": "x17",
+            "x21s": "x21s"
+        },
+        "fee": {
+            "hmq1725": 1,
+            "balloon": 1,
+            "megabtx": 1,
+            "phi": 1,
+            "x16r": 1,
+            "x16rv2": 1,
+            "x16rt": 1,
+            "x16s": 1,
+            "x17": 1,
+            "x21s": 1
+        }
+    }
+}
