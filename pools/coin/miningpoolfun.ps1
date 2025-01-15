@@ -248,10 +248,9 @@ if ($Name -in $(arg).PoolName) {
                                 $User3 = $AltWallets.$Sym.address
                             }
                         }
-                        if ($AltWallets.$Sym.params -ne "enter additional params here, such as 'm=solo' or m=party.partypassword") {
+                        if ($AltWallets.$Sym.params -ne "enter additional params here, such as 'm=solo'") {
                             $mc += "m=$($AltWallets.$Sym.params)"
                             $mc = $mc.replace("SOLO", "solo")
-                            $mc = $mc.replace("PARTY", "party")
                         }    
                     }   
                 }
@@ -275,7 +274,7 @@ if ($Name -in $(arg).PoolName) {
                 ## User2
                 "$User2.$($Params.RigName2)",
                 ## User3
-                "$User3.($Params.RigName3)",
+                "$User3.$($Params.RigName3)",
                 ## Pass1
                 "c=$Pass1",
                 ## Pass2
