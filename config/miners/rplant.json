@@ -14,6 +14,7 @@
             "yespowermgpc": "",
             "yespoweriots": "",
             "yespoweric": "",
+            "yespowerltncg": "",
             "sha256csm": ""
         },
         "difficulty": {
@@ -27,6 +28,7 @@
             "yespowermgpc": "",
             "yespoweriots": "",
             "yespoweric": "",
+            "yespowerltncg": "",
             "sha256csm": ""
         },
         "naming": {
@@ -40,6 +42,7 @@
             "yespowerr16": "yespowerr16",
             "yespoweriots": "yespoweriots",
             "yespoweric": "yespoweric",
+            "yespowerltncg": "yespowerltncg",
             "sha256csm": "sha256csm"
         },
         "fee": {
@@ -53,6 +56,7 @@
             "yespowermgpc": 0,
             "yespoweriots": 0,
             "yespoweric": 0,
+            "yespowerltncg": 0,
             "sha256csm": 0
         }
     },
