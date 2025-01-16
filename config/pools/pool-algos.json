@@ -1609,5 +1609,14 @@
       "add pool or miner here",
       "comma seperated"
     ]
+  },
+  "yespowerltncg": {
+    "alt_names": [
+      "yespowerltncg"
+    ],
+    "exclusions": [
+      "add pool or miner here",
+      "comma seperated"
+    ]
   }
 }
