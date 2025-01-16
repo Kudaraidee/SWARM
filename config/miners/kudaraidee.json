@@ -16,6 +16,7 @@
             "yescryptr32": "",
             "yespower": "",
             "yespowerr16": "",
+            "yespowerltncg": "",
             "yespowersugar": "",
             "yespowerurx": ""
         },
@@ -32,6 +33,7 @@
             "yescryptr32": "",
             "yespower": "",
             "yespowerr16": "",
+            "yespowerltncg": "",
             "yespowersugar": "",
             "yespowerurx": ""
         },
@@ -48,6 +50,7 @@
             "yescryptr32": "yescryptr32",
             "yespower": "yespower",
             "yespowerr16": "yespowerr16",
+            "yespowerltncg": "yespowerltncg",
             "yespowersugar": "yespowersugar",
             "yespowerurx": "yespowerurx"
         },
@@ -64,6 +67,7 @@
             "yescryptr32": 0,
             "yespower": 0,
             "yespowerr16": 0,
+            "yespowerltncg": 0,
             "yespowersugar": 0,
             "yespowerurx": 0
         }
