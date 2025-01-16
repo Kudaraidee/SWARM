@@ -14,6 +14,7 @@
             "yescryptr16": "",
             "yescryptr32": "",
             "yespower": "",
+            "yespowerltncg": "--algo yespower --param-n 2048 --param-r 32 --param-key 'LTNCGYES'",
             "yespowerr16": ""
         },
         "difficulty": {
@@ -27,6 +28,7 @@
             "yescryptr16": "",
             "yescryptr32": "",
             "yespower": "",
+            "yespowerltncg": "",
             "yespowerr16": ""
         },
         "naming": {
@@ -40,6 +42,7 @@
             "yescryptr16": "yescryptr16",
             "yescryptr32": "yescryptr32",
             "yespower": "yespower",
+            "yespowerltncg": "yespowerltncg",
             "yespowerr16": "yespowerr16"
         },
         "fee": {
@@ -53,6 +56,7 @@
             "yescryptr16": 0,
             "yescryptr32": 0,
             "yespower": 0,
+            "yespowerltncg": 0,
             "yespowerr16": 0
         }
     },
