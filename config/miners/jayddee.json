@@ -15,6 +15,7 @@
             "yescryptr32": "",
             "yespower": "",
             "yespowerltncg": "--param-n 2048 --param-r 32 --param-key 'LTNCGYES'",
+            "yespowermgpc": "--param-n 2048 --param-r 32 --param-key 'Magpies are birds of the Corvidae family.'",
             "yespowerr16": ""
         },
         "difficulty": {
@@ -29,6 +30,7 @@
             "yescryptr32": "",
             "yespower": "",
             "yespowerltncg": "",
+            "yespowermgpc": "",
             "yespowerr16": ""
         },
         "naming": {
@@ -43,6 +45,7 @@
             "yescryptr32": "yescryptr32",
             "yespower": "yespower",
             "yespowerltncg": "yespower",
+            "yespowermgpc": "yespower",
             "yespowerr16": "yespowerr16"
         },
         "fee": {
@@ -57,6 +60,7 @@
             "yescryptr32": 0,
             "yespower": 0,
             "yespowerltncg": 0,
+            "yespowermgpc": 0,
             "yespowerr16": 0
         }
     },
