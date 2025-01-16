@@ -11,6 +11,7 @@
             "yespoweritc": "",
             "power2b": "",
             "yespowerr16": "",
+            "yespowermgpc": "",
             "yespoweriots": "",
             "yespoweric": "",
             "sha256csm": ""
@@ -23,6 +24,7 @@
             "yespoweritc": "",
             "power2b": "",
             "yespowerr16": "",
+            "yespowermgpc": "",
             "yespoweriots": "",
             "yespoweric": "",
             "sha256csm": ""
@@ -34,6 +36,7 @@
             "yescryptr32": "yescryptr32",
             "yespoweritc": "yespoweritc",
             "power2b": "power2b",
+            "yespowermgpc": "yespowermgpc",
             "yespowerr16": "yespowerr16",
             "yespoweriots": "yespoweriots",
             "yespoweric": "yespoweric",
@@ -47,6 +50,7 @@
             "yespowerr16": 0,
             "yespoweritc": 0,
             "power2b": 0,
+            "yespowermgpc": 0,
             "yespoweriots": 0,
             "yespoweric": 0,
             "sha256csm": 0
