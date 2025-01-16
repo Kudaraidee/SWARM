@@ -25,14 +25,13 @@ $(vars).CPUTypes | ForEach-Object {
     $MinerConfig = $Global:config.miners.kudaraidee
 
     ##Export would be /path/to/[SWARMVERSION]/build/export##
-    $ExportDir = "/usr/local/swarm/lib64"
+    $ExportDir = "/lib/x86_64-linux-gnu"
     $Miner_Dir = Join-Path ($(vars).dir) ((Split-Path $Path).replace(".", ""))
 
     ##Prestart actions before miner launch
     ##This can be edit in miner.json
     $Prestart = @()
-    if ($IsLinux) { $Prestart += "export LD_PRELOAD=/usr/local/swarm/lib64/libcurl.so.4" }          
-    #$PreStart += "export LD_LIBRARY_PATH=$ExportDir`:$Miner_Dir"
+    $PreStart += "export LD_LIBRARY_PATH=$ExportDir`:$Miner_Dir"
     if ($IsLinux) { $Prestart += "export DISPLAY=:0" }
     $MinerConfig.$ConfigType.prestart | ForEach-Object { $Prestart += "$($_)" }
 
