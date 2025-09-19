@@ -328,6 +328,17 @@
     "minername": "ethminer",
     "version": "0.19.0-alpha.0",
     "optional": "Yes",
+    "uri": "https://github.com/PhicoinProject/phihashminer_v2/releases/download/2.0.1/phihashminer.tar.gz"
+  },
+  "phihashminer": {
+    "name": "phihashminer",
+    "type": "nvidia",
+    "NVIDIA1": ".\\bin\\phihashminer-1\\phihashminer",
+    "NVIDIA2": ".\\bin\\phihashminer-2\\phihashminer",
+    "NVIDIA3": ".\\bin\\phihashminer-3\\phihashminer",
+    "minername": "phihashminer",
+    "version": "2.0.1",
+    "optional": "Yes",
     "uri": "https://github.com/MaynardMiner/MM.Compiled-Miners/releases/download/v4.0/ethminer-linux.tar.gz"
   },
   "swarm-miner": {
