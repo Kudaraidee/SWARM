@@ -4,6 +4,8 @@ $(vars).NVIDIATypes | ForEach-Object {
 
     $ConfigType = $_; $Num = $ConfigType -replace "NVIDIA", ""
 
+    $ref = "srbmulti-n";
+
     ##Miner Path Information
     if ($(vars).nvidia.$ref.$ConfigType) { $Path = "$($(vars).nvidia.$ref.$ConfigType)" }
     else { $Path = "None" }
