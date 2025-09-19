@@ -1,21 +1,21 @@
 . .\build\powershell\global\miner_stat.ps1;
 . .\build\powershell\global\modules.ps1;
-$(vars).AMDTypes | ForEach-Object {
+$(vars).NVIDIATypes | ForEach-Object {
 
-    $ConfigType = $_; $Num = $ConfigType -replace "AMD", ""
+    $ConfigType = $_; $Num = $ConfigType -replace "NVIDIA", ""
 
     ##Miner Path Information
-    if ($(vars).amd.srbmulti.$ConfigType) { $Path = "$($(vars).amd.srbmulti.$ConfigType)" }
+    if ($(vars).nvidia.$ref.$ConfigType) { $Path = "$($(vars).nvidia.$ref.$ConfigType)" }
     else { $Path = "None" }
-    if ($(vars).amd.srbmulti.uri) { $Uri = "$($(vars).amd.srbmulti.uri)" }
+    if ($(vars).nvidia.$ref.uri) { $Uri = "$($(vars).nvidia.$ref.uri)" }
     else { $Uri = "None" }
-    if ($(vars).amd.srbmulti.minername) { $MinerName = "$($(vars).amd.srbmulti.minername)" }
+    if ($(vars).nvidia.$ref.minername) { $MinerName = "$($(vars).nvidia.$ref.minername)" }
     else { $MinerName = "None" }
 
     $User = "User$Num"; $Pass = "Pass$Num"; $Name = "srbmulti-$Num"; $Port = "3400$Num"
 
     Switch ($Num) {
-        1 { $Get_Devices = $(vars).AMDDevices1; $Rig = $(arg).Rigname1 }
+        1 { $Get_Devices = $(vars).NVIDIADevices1; $Rig = $(arg).Rigname1 }
     }
 
     ##Log Directory
@@ -30,7 +30,7 @@ $(vars).AMDTypes | ForEach-Object {
     $MinerConfig = $Global:config.miners.srbmulti
 
     ##Export would be /path/to/[SWARMVERSION]/build/export##
-    $ExportDir = "/usr/local/swarm/lib64"
+    $ExportDir = "/lib/x86_64-linux-gnu"
     $Miner_Dir = Join-Path ($(vars).dir) ((Split-Path $Path).replace(".", ""))
 
     ##Prestart actions before miner launch
@@ -84,9 +84,9 @@ $(vars).AMDTypes | ForEach-Object {
                     Path       = $Path
                     Devices    = $Devices
                     Stratum    = "$($_.Protocol)://$($_.Pool_Host):$($_.Port)"
-                    Version    = "$($(vars).amd.srbmulti.version)"
+                    Version    = "$($(vars).nvidia.$ref.version)"
                     DeviceCall = "srbminer"
-                    Arguments  = "$Nicehash--adl-disable --gpu-platform $($(vars).AMDPlatform) --disable-cpu --algorithm $($MinerConfig.$ConfigType.naming.$($_.Algorithm)) --pool $($_.Pool_Host):$($_.Port) --wallet $($_.$User) --password $($_.$Pass)$Diff --api-enable --logfile `'$Log`' --api-port $Port $($MinerConfig.$ConfigType.commands.$($_.Algorithm))"
+                    Arguments  = "$Nicehash--adl-disable --gpu-platform $($(vars).NVIDIAPlatform) --disable-cpu --algorithm $($MinerConfig.$ConfigType.naming.$($_.Algorithm)) --pool $($_.Pool_Host):$($_.Port) --wallet $($_.$User) --password $($_.$Pass)$Diff --api-enable --logfile `'$Log`' --api-port $Port $($MinerConfig.$ConfigType.commands.$($_.Algorithm))"
                     HashRates  = [Decimal]$Stat.Hour
                     HashRate_Adjusted = [Decimal]$Hashstat
                     Quote      = $_.Price

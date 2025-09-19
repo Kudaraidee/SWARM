@@ -86,8 +86,8 @@
     "type": "cpu",
     "CPU": ".\\bin\\srbmulti-cpu-1\\SRBMiner-MULTI",
     "minername": "SRBMiner-MULTI",
-    "version": "2.7.4",
+    "version": "2.9.7",
     "optional": "No",
-    "uri": "https://github.com/doktor83/SRBMiner-Multi/releases/download/2.7.4/SRBMiner-Multi-2-7-4-Linux.tar.xz"
+    "uri": "https://github.com/doktor83/SRBMiner-Multi/releases/download/2.9.7/SRBMiner-Multi-2-9-7-Linux.tar.xz"
   }
 }
