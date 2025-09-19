@@ -14,10 +14,12 @@ $(vars).NVIDIATypes | ForEach-Object {
     if ($(vars).nvidia.$ref.minername) { $MinerName = "$($(vars).nvidia.$ref.minername)" }
     else { $MinerName = "None" }
 
-    $User = "User$Num"; $Pass = "Pass$Num"; $Name = "srbmulti-$Num"; $Port = "3400$Num"
+    $User = "User$Num"; $Pass = "Pass$Num"; $Name = "$ref-$Num"; $Port = "3400$Num"
 
     Switch ($Num) {
-        1 { $Get_Devices = $(vars).NVIDIADevices1; $Rig = $(arg).Rigname1 }
+        1 { $Get_Devices = $(vars).NVIDIADevices1; $Rig = $(arg).RigName1; $MinerAlgos = $(vars).GPUAlgorithm1 }
+        2 { $Get_Devices = $(vars).NVIDIADevices2; $Rig = $(arg).RigName2;  $MinerAlgos = $(vars).GPUAlgorithm2 }
+        3 { $Get_Devices = $(vars).NVIDIADevices3; $Rig = $(arg).RigName3;  $MinerAlgos = $(vars).GPUAlgorithm3 }
     }
 
     ##Log Directory
