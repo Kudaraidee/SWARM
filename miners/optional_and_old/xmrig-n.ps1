@@ -15,10 +15,12 @@ $(vars).NVIDIATypes | ForEach-Object {
 
     $User = "User$Num"; $Pass = "Pass$Num"; $Name = "$CName-$Num"; $Port = "5200$Num";
 
+    $MinerAlgos = @();
+
     Switch ($Num) {
-        1 { $Get_Devices = $(vars).NVIDIADevices1; $Rig = $(arg).RigName1 }
-        2 { $Get_Devices = $(vars).NVIDIADevices2; $Rig = $(arg).RigName2 }
-        3 { $Get_Devices = $(vars).NVIDIADevices3; $Rig = $(arg).RigName3 }
+        1 { $Get_Devices = $(vars).NVIDIADevices1; $Rig = $(arg).RigName1; $MinerAlgos = $(vars).GPUAlgorithm1 }
+        2 { $Get_Devices = $(vars).NVIDIADevices2; $Rig = $(arg).RigName2;  $MinerAlgos = $(vars).GPUAlgorithm2 }
+        3 { $Get_Devices = $(vars).NVIDIADevices3; $Rig = $(arg).RigName3;  $MinerAlgos = $(vars).GPUAlgorithm3 }
     }
 
     ##Log Directory
@@ -33,7 +35,7 @@ $(vars).NVIDIATypes | ForEach-Object {
     $MinerConfig = $Global:config.miners.$CName
 
     ##Export would be /path/to/[SWARMVERSION]/build/export##
-    $ExportDir = "/usr/local/swarm/lib64"
+    $ExportDir = "/lib/x86_64-linux-gnu"
     $Miner_Dir = Join-Path ($(vars).dir) ((Split-Path $Path).replace(".", ""))
 
     ##Prestart actions before miner launch
@@ -64,11 +66,19 @@ $(vars).NVIDIATypes | ForEach-Object {
             else { $HashStat = $Stat.Hour }
             $Pools | Where-Object Algorithm -eq $MinerAlgo | ForEach-Object {
                 $Diff = ""
+                $Nicehash = ""
+                if($_.name -eq "nicehash") {
+                    $Nicehash = "--nicehash "
+                }
                 if ($MinerConfig.$ConfigType.difficulty.$($_.Algorithm)) { 
                     switch($_.Name) {
                         "zergpool" { $Diff = ",sd=$($MinerConfig.$ConfigType.difficulty.$($_.Algorithm))" }
                         default { $Diff = ",d=$($MinerConfig.$ConfigType.difficulty.$($_.Algorithm))" }
                     }
+                }
+                $Loader = "--cuda-loader=libxmrig-cuda.so"
+                if($IsWindows) {
+                    $Loader = "--cuda-loader=xmrig-cuda.dll"
                 }
                 [PSCustomObject]@{
                     MName      = $Name
@@ -84,7 +94,7 @@ $(vars).NVIDIATypes | ForEach-Object {
                     Stratum    = "$($_.Protocol)://$($_.Pool_Host):$($_.Port)" 
                     Version    = "$($(vars).nvidia.$CName.version)"
                     DeviceCall = "xmrstak"
-                    Arguments  = "-a $($MinerConfig.$ConfigType.naming.$($_.Algorithm)) --http-enabled --http-port=$Port -o stratum+tcp://$($_.Pool_Host):$($_.Port) -u $($_.$User) -p $($_.$Pass)$($Diff) --donate-level 1 --no-cpu --cuda --nicehash --log-file=`'$Log`' $($MinerConfig.$ConfigType.commands.$($_.Algorithm))"    
+                    Arguments  = "$Nicehash-a $($MinerConfig.$ConfigType.naming.$($_.Algorithm)) --http-enabled --http-port=$Port -o stratum+tcp://$($_.Pool_Host):$($_.Port) -u $($_.$User) -p $($_.$Pass)$($Diff) --donate-level 1 --no-cpu --cuda $Loader --nicehash --log-file=`'$Log`' $($MinerConfig.$ConfigType.commands.$($_.Algorithm))"    
                     HashRates  = [Decimal]$Stat.Hour
                     HashRate_Adjusted = [Decimal]$Hashstat
                     Quote      = $_.Price
