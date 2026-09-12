@@ -180,7 +180,7 @@
             "x25x": "x25x"
         },
         "fee": {
-            "allium": "",
+            "allium": 0,
             "argon2d500": 0,
             "argon2d1000": 0,
             "argon2d4096": 0,
