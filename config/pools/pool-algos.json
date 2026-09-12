@@ -1171,6 +1171,15 @@
       "comma seperated"
     ]
   },
+  "rinhash": {
+    "alt_names": [
+      "rinhash"
+    ],
+    "exclusions": [
+      "add pool or miner here",
+      "comma seperated"
+    ]
+  },
   "scryptn2": {
     "alt_names": [
       "scryptn2"
@@ -1183,6 +1192,16 @@
   "sha3d": {
     "alt_names": [
       "sha3d"
+    ],
+    "exclusions": [
+      "add pool or miner here",
+      "comma seperated"
+    ]
+  },
+  "sha3t": {
+    "alt_names": [
+      "sha3t",
+      "sha3-256t"
     ],
     "exclusions": [
       "add pool or miner here",
@@ -1271,6 +1290,15 @@
       "comma seperated"
     ]
   },
+  "soterg": {
+    "alt_names": [
+      "soterg"
+    ],
+    "exclusions": [
+      "add pool or miner here",
+      "comma seperated"
+    ]
+  },
   "tensority": {
     "alt_names": [
       "tensority"
@@ -1328,6 +1356,15 @@
   "wildkeccak": {
     "alt_names": [
       "wildkeccak"
+    ],
+    "exclusions": [
+      "add pool or miner here",
+      "comma seperated"
+    ]
+  },
+  "whirlpoolx2": {
+    "alt_names": [
+      "whirlpoolx2"
     ],
     "exclusions": [
       "add pool or miner here",
