@@ -704,6 +704,18 @@
       "comma seperated"
     ]
   },
+  "hoohash-pepew": {
+    "alt_names": [
+      "hoohash-pepew",
+      "hoohashv110",
+      "pepew",
+      "hoohash"
+    ],
+    "exclusions": [
+      "add pool or miner here",
+      "comma seperated"
+    ]
+  },
   "hsr": {
     "alt_names": [
       "hsr"
@@ -1198,7 +1210,7 @@
       "comma seperated"
     ]
   },
-  "sha3t": {
+  "sha3-256t": {
     "alt_names": [
       "sha3t",
       "sha3-256t"
