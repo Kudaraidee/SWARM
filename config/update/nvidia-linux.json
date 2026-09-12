@@ -66,6 +66,17 @@
     "optional": "Yes",
     "uri": "https://github.com/zcoinofficial/ccminer/releases/download/1.3.2/ccminer_linux_cuda102"
   },
+  "cc-tpfuemp": {
+    "name": "cc-tpfuemp",
+    "type": "nvidia",
+    "NVIDIA1": ".\\bin\\cc-tpfuemp-1\\ccminer",
+    "NVIDIA2": ".\\bin\\cc-tpfuemp-2\\ccminer",
+    "NVIDIA3": ".\\bin\\cc-tpfuemp-3\\ccminer",
+    "minername": "ccminer",
+    "version": "v2026.07.2",
+    "optional": "No",
+    "uri": "https://github.com/tpfuemp/ccminer-tpfuemp/releases/download/v2026.07.2/ccminer-tpfuemp-2026.07.2-linux-x64.tar.gz"
+  },
   "dstm": {
     "name": "dstm",
     "type": "nvidia",
