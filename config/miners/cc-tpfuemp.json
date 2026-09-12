@@ -105,8 +105,6 @@
         "name": "NVIDIA2",
         "delay": "1",
         "prestart": [],
-        "delay": "1",
-        "prestart": [],
         "commands": {
             "allium": "",
             "argon2d500": "",
@@ -206,8 +204,6 @@
     },
     "NVIDIA3": {
         "name": "NVIDIA3",
-        "delay": "1",
-        "prestart": [],
         "delay": "1",
         "prestart": [],
         "commands": {
